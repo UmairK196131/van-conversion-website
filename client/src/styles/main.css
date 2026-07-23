@@ -1459,7 +1459,11 @@
   }
 
   .panorama-viewer {
-    @apply border-border h-[min(70vh,520px)] overflow-hidden rounded-2xl border shadow-sm dark:border-border-dark;
+    @apply border-border relative h-[min(70vh,520px)] min-h-[320px] overflow-hidden rounded-2xl border bg-black shadow-sm dark:border-border-dark;
+  }
+
+  .panorama-viewer .pnlm-container {
+    @apply absolute inset-0 h-full w-full;
   }
 
   .panorama-viewer__fallback {
