@@ -1,0 +1,9 @@
+{
+  "name": "@van-conversion/admin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Admin dashboard — scaffolded in Sprint 0, built out in Sprint 6",
+  "scripts": {
+    "dev": "echo \"Admin dashboard starts in Sprint 6\" && exit 0"
+  }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Premium van conversion and camper customization — bespoke adventure vehicles built for the road ahead."
+    />
+    <title>Van Conversion &amp; Camper | Premium Adventure Vehicles</title>
+
+    <!-- Google Fonts: Poppins (headings) + Inter (body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body>
+    <div id="app" class="min-h-screen">
+      <header class="bg-primary text-white">
+        <div class="mx-auto max-w-6xl px-6 py-16 text-center">
+          <p class="mb-2 text-sm font-medium uppercase tracking-widest text-accent">Sprint 0</p>
+          <h1 class="mb-4 text-4xl font-bold text-white md:text-5xl">
+            Van Conversion &amp; Camper
+          </h1>
+          <p class="mx-auto max-w-2xl text-lg text-white/80">
+            Foundation scaffold — design tokens, API, and database are wired up. Homepage sections
+            arrive in Sprint 2.
+          </p>
+        </div>
+      </header>
+
+      <main class="mx-auto max-w-6xl px-6 py-section">
+        <section class="rounded-2xl border border-secondary/10 bg-white p-8 shadow-sm">
+          <h2 class="mb-4 text-2xl font-semibold">Design Tokens</h2>
+          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div class="rounded-lg bg-primary p-4 text-center text-sm text-white">Primary</div>
+            <div class="rounded-lg bg-secondary p-4 text-center text-sm text-white">Secondary</div>
+            <div class="rounded-lg bg-accent p-4 text-center text-sm text-white">Accent</div>
+            <div class="rounded-lg border bg-background p-4 text-center text-sm">Background</div>
+            <div class="rounded-lg bg-text p-4 text-center text-sm text-white">Text</div>
+          </div>
+          <p class="mt-6 text-sm text-text/70">
+            Headings use <span class="font-heading font-semibold">Poppins</span>; body copy uses
+            <span class="font-body">Inter</span>.
+          </p>
+          <p id="api-status" class="mt-4 text-sm font-medium text-secondary">Checking API…</p>
+        </section>
+      </main>
+
+      <footer
+        class="border-t border-secondary/10 bg-background py-8 text-center text-sm text-text/60"
+      >
+        &copy; 2026 Van Conversion &amp; Camper. All rights reserved.
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  EDITOR
+}
+
+enum InquiryStatus {
+  NEW
+  RESPONDED
+  ARCHIVED
+}
+
+model User {
+  id           Int        @id @default(autoincrement())
+  email        String     @unique
+  passwordHash String     @map("password_hash")
+  role         UserRole   @default(ADMIN)
+  createdAt    DateTime   @default(now()) @map("created_at")
+  blogPosts    BlogPost[]
+
+  @@map("users")
+}
+
+model Service {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String   @db.Text
+  imageUrl    String?  @map("image_url")
+  sortOrder   Int      @default(0) @map("sort_order")
+  isActive    Boolean  @default(true) @map("is_active")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("services")
+}
+
+model Project {
+  id           Int      @id @default(autoincrement())
+  title        String
+  slug         String   @unique
+  description  String   @db.Text
+  vehicleModel String   @map("vehicle_model")
+  beforeImage  String?  @map("before_image")
+  afterImage   String?  @map("after_image")
+  gallery      Json?
+  isFeatured   Boolean  @default(false) @map("is_featured")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("projects")
+}
+
+model Testimonial {
+  id         Int      @id @default(autoincrement())
+  clientName String   @map("client_name")
+  quote      String   @db.Text
+  rating     Int      @default(5)
+  imageUrl   String?  @map("image_url")
+  isActive   Boolean  @default(true) @map("is_active")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("testimonials")
+}
+
+model BlogPost {
+  id          Int       @id @default(autoincrement())
+  title       String
+  slug        String    @unique
+  content     String    @db.LongText
+  excerpt     String?   @db.Text
+  coverImage  String?   @map("cover_image")
+  authorId    Int?      @map("author_id")
+  author      User?     @relation(fields: [authorId], references: [id], onDelete: SetNull)
+  publishedAt DateTime? @map("published_at")
+  isPublished Boolean   @default(false) @map("is_published")
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  @@map("blog_posts")
+}
+
+model Inquiry {
+  id           Int           @id @default(autoincrement())
+  name         String
+  email        String
+  phone        String?
+  vehicleModel String?       @map("vehicle_model")
+  service      String?
+  budget       String?
+  message      String        @db.Text
+  status       InquiryStatus @default(NEW)
+  createdAt    DateTime      @default(now()) @map("created_at")
+
+  @@map("inquiries")
+}
+
+model FaqItem {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String   @db.Text
+  category  String?
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("faq_items")
+}
+
+model Media {
+  id         Int      @id @default(autoincrement())
+  filename   String
+  url        String
+  mimeType   String   @map("mime_type")
+  size       Int
+  uploadedAt DateTime @default(now()) @map("uploaded_at")
+
+  @@map("media")
+}
