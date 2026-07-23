@@ -1,5 +1,5 @@
-import { prisma } from '../lib/prisma.js';
-import { logActivity } from '../lib/activityLog.js';
+import { prisma } from '../../lib/prisma.js';
+import { logActivity } from '../../lib/activityLog.js';
 
 export async function getDashboardStats(_req, res, next) {
   try {
