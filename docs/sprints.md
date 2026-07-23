@@ -70,14 +70,14 @@ None — this is the starting sprint.
 
 ### Tasks
 
-- [ ] Build responsive header with logo, navigation links, and mobile hamburger menu
-- [ ] Build footer with company info, quick links, social icons, and copyright
-- [ ] Create page layout wrapper (header + main content + footer)
-- [ ] Implement dark/light mode toggle with `localStorage` persistence
-- [ ] Set up client-side routing for all 9 pages (placeholder content)
-- [ ] Add scroll-to-top button
-- [ ] Implement sticky header with background transition on scroll
-- [ ] Ensure WCAG 2.1 AA contrast ratios for both themes
+- [x] Build responsive header with logo, navigation links, and mobile hamburger menu
+- [x] Build footer with company info, quick links, social icons, and copyright
+- [x] Create page layout wrapper (header + main content + footer)
+- [x] Implement dark/light mode toggle with `localStorage` persistence
+- [x] Set up client-side routing for all 9 pages (placeholder content)
+- [x] Add scroll-to-top button
+- [x] Implement sticky header with background transition on scroll
+- [x] Ensure WCAG 2.1 AA contrast ratios for both themes
 
 ### Acceptance Criteria
 
