@@ -269,11 +269,17 @@ const FALLBACK_TESTIMONIALS = [
   },
 ];
 
+function getApiErrorMessage(body, status) {
+  if (typeof body.error === 'string') return body.error;
+  if (body.error?.message) return body.error.message;
+  return `Request failed: ${status}`;
+}
+
 async function fetchJson(url, options) {
   const response = await fetch(url, options);
   const body = await response.json().catch(() => ({}));
   if (!response.ok) {
-    const error = new Error(body.error || `Request failed: ${response.status}`);
+    const error = new Error(getApiErrorMessage(body, response.status));
     error.status = response.status;
     error.fieldErrors = body.errors;
     throw error;
