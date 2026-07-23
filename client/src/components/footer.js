@@ -11,8 +11,7 @@ function socialIcon(name) {
 
 export function renderFooter() {
   const quickLinks = FOOTER_LINKS.map(
-    (link) =>
-      `<li><a href="${link.path}" data-nav-link class="footer-link">${link.label}</a></li>`,
+    (link) => `<li><a href="${link.path}" data-nav-link class="footer-link">${link.label}</a></li>`
   ).join('');
 
   const socialLinks = SOCIAL_LINKS.map(
@@ -21,7 +20,7 @@ export function renderFooter() {
         <a href="${link.href}" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="${link.label}">
           ${socialIcon(link.icon)}
         </a>
-      </li>`,
+      </li>`
   ).join('');
 
   const year = new Date().getFullYear();
