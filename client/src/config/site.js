@@ -4,6 +4,8 @@ export const SITE = {
   email: 'hello@vanconversion.com',
   phone: '+1 (555) 123-4567',
   address: '123 Workshop Lane, Portland, OR 97201',
+  hours: 'Mon–Fri 9:00 AM – 5:00 PM · Sat by appointment',
+  mapEmbedUrl: 'https://maps.google.com/maps?q=123+Workshop+Lane,+Portland,+OR+97201&output=embed',
 };
 
 export const NAV_LINKS = [

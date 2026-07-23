@@ -7,17 +7,9 @@ import { renderFaqPage, mountFaqPage } from '../components/faq/index.js';
 import { renderPortfolioPage, mountPortfolioPage } from '../components/portfolio/index.js';
 import { renderProjectDetailPage, mountProjectDetailPage } from '../components/portfolio/detail.js';
 import { renderTestimonialsPage, mountTestimonialsPage } from '../components/testimonials/index.js';
-
-function pageShell({ title, description, children = '' }) {
-  return `<section class="page-placeholder">
-    <div class="page-placeholder__inner">
-      <p class="page-placeholder__eyebrow">Coming in a future sprint</p>
-      <h1 class="page-placeholder__title">${title}</h1>
-      <p class="page-placeholder__description">${description}</p>
-      ${children}
-    </div>
-  </section>`;
-}
+import { renderBlogPage, mountBlogPage } from '../components/blog/index.js';
+import { renderBlogDetailPage, mountBlogDetailPage } from '../components/blog/detail.js';
+import { renderContactPage, mountContactPage } from '../components/contact/index.js';
 
 const DEFAULT_DESCRIPTION = SITE.tagline;
 
@@ -79,13 +71,16 @@ export const pages = {
     path: '/blog',
     title: `Blog | ${SITE.name}`,
     description:
-      'Van life tips, build updates, and travel inspiration. Blog posts arrive in Sprint 5.',
-    render: () =>
-      pageShell({
-        title: 'Blog',
-        description:
-          'Van life tips, build updates, and travel inspiration. Blog posts arrive in Sprint 5.',
-      }),
+      'Van life tips, build updates, and travel inspiration from our conversion workshop.',
+    render: () => renderBlogPage(),
+    mount: () => mountBlogPage(),
+  },
+  blogDetail: {
+    path: '/blog/:slug',
+    title: `Blog | ${SITE.name}`,
+    description: 'Read van life tips, conversion guides, and travel inspiration.',
+    render: (params) => renderBlogDetailPage(params.slug),
+    mount: () => mountBlogDetailPage(),
   },
   faq: {
     path: '/faq',
@@ -100,16 +95,8 @@ export const pages = {
     title: `Contact | ${SITE.name}`,
     description:
       'Ready to start your van conversion? Get in touch for a free consultation and custom quote.',
-    render: () =>
-      pageShell({
-        title: 'Contact Us',
-        description:
-          'Ready to start your build? The inquiry form and map embed arrive in Sprint 5.',
-        children: `<div class="page-placeholder__contact">
-          <p><strong>Email:</strong> <a href="mailto:${SITE.email}" class="inline-link">${SITE.email}</a></p>
-          <p><strong>Phone:</strong> <a href="tel:${SITE.phone.replace(/\s/g, '')}" class="inline-link">${SITE.phone}</a></p>
-        </div>`,
-      }),
+    render: () => renderContactPage(),
+    mount: () => mountContactPage(),
   },
 };
 

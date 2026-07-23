@@ -214,14 +214,14 @@ Sprint 0 (API), Sprint 1
 
 ### Tasks
 
-- [ ] **Blog List Page** — `/blog` with post cards (cover image, title, excerpt, date)
-- [ ] **Blog Detail Page** — `/blog/:slug` with full content, author, date, related posts
-- [ ] **Contact Page** — Contact form, company address/map embed, phone, email, hours
-- [ ] **Inquiry Form** — Fields per SRS §9: Name, Email, Phone, Vehicle Model, Required Service, Budget, Message
-- [ ] `POST /api/inquiries` — Server-side validation, reCAPTCHA v3 verification, DB storage
-- [ ] Email notification to admin on new inquiry (Nodemailer)
-- [ ] Form success/error states with user-friendly messages
-- [ ] Rate limiting on inquiry endpoint
+- [x] **Blog List Page** — `/blog` with post cards (cover image, title, excerpt, date)
+- [x] **Blog Detail Page** — `/blog/:slug` with full content, author, date, related posts
+- [x] **Contact Page** — Contact form, company address/map embed, phone, email, hours
+- [x] **Inquiry Form** — Fields per SRS §9: Name, Email, Phone, Vehicle Model, Required Service, Budget, Message
+- [x] `POST /api/inquiries` — Server-side validation, reCAPTCHA v3 verification, DB storage
+- [x] Email notification to admin on new inquiry (Nodemailer)
+- [x] Form success/error states with user-friendly messages
+- [x] Rate limiting on inquiry endpoint
 
 ### Acceptance Criteria
 

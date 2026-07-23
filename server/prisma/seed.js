@@ -186,11 +186,63 @@ async function main() {
       title: 'Choosing the Right Base Van for Your Conversion',
       slug: 'choosing-the-right-base-van',
       excerpt: 'A practical guide to selecting the perfect platform for your camper build.',
-      content:
-        '<p>Starting with the right base van is the most important decision in any conversion project...</p>',
+      content: `<h2>Why the base van matters</h2>
+<p>Starting with the right base van is the most important decision in any conversion project. Wheelbase, roof height, drivetrain, and payload capacity all shape what you can build.</p>
+<h2>Popular platforms</h2>
+<p>The Mercedes Sprinter, Ford Transit, and Ram ProMaster each have strengths. Sprinters offer premium finishes and 4x4 options; Transits are widely available; ProMasters have a square interior for easier cabinetry.</p>
+<h3>Questions to ask</h3>
+<ul>
+<li>How many people need to sleep comfortably?</li>
+<li>Will you drive off-pavement regularly?</li>
+<li>What is your realistic payload after water, gear, and passengers?</li>
+</ul>
+<p>Book a consultation and we will help you match a base van to your travel style and budget.</p>`,
+      coverImage: 'https://placehold.co/1200x675/1C2541/3A86FF?text=Base+Van+Guide',
       authorId: admin.id,
       isPublished: true,
-      publishedAt: new Date(),
+      publishedAt: new Date('2025-06-15'),
+    },
+  });
+
+  await prisma.blogPost.upsert({
+    where: { slug: 'essential-electrical-upgrades' },
+    update: {},
+    create: {
+      title: '5 Essential Electrical Upgrades for Off-Grid Van Life',
+      slug: 'essential-electrical-upgrades',
+      excerpt: 'Power systems that keep you comfortable miles from the nearest outlet.',
+      content: `<h2>Start with your daily usage</h2>
+<p>Before choosing batteries and inverters, list every device you run and how long you use it each day.</p>
+<h2>Our top five upgrades</h2>
+<ol>
+<li>Lithium house battery bank sized for 2–3 days off-grid</li>
+<li>MPPT solar charge controller with 400W+ of roof panels</li>
+<li>Multi-plus inverter/charger for shore power and alternator charging</li>
+<li>Dedicated 12V fuse panel with labelled circuits</li>
+<li>Battery monitor with shunt for accurate state-of-charge</li>
+</ol>`,
+      coverImage: 'https://placehold.co/1200x675/1C2541/4CC9F0?text=Electrical+Upgrades',
+      authorId: admin.id,
+      isPublished: true,
+      publishedAt: new Date('2025-05-20'),
+    },
+  });
+
+  await prisma.blogPost.upsert({
+    where: { slug: 'planning-van-kitchen-layout' },
+    update: {},
+    create: {
+      title: 'Planning Your Van Kitchen Layout',
+      slug: 'planning-van-kitchen-layout',
+      excerpt: 'Counter space, appliances, and storage trade-offs for mobile cooking.',
+      content: `<h2>Galley vs. pull-out pod</h2>
+<p>Fixed galley layouts maximise counter space along one wall. Pull-out kitchen pods free up floor space when cooking is not the priority.</p>
+<h2>Appliance choices</h2>
+<p>Compressor fridges, two-burner cooktops, and shallow sinks each affect cabinet depth.</p>`,
+      coverImage: 'https://placehold.co/1200x675/1C2541/8338EC?text=Kitchen+Layout',
+      authorId: admin.id,
+      isPublished: true,
+      publishedAt: new Date('2025-04-10'),
     },
   });
 
@@ -258,7 +310,7 @@ async function main() {
   });
 
   console.log(
-    `Seeded: admin user, ${services.length} services, ${4} projects, testimonials, blog post, FAQ items`
+    `Seeded: admin user, ${services.length} services, ${4} projects, testimonials, ${3} blog posts, FAQ items`
   );
 }
 

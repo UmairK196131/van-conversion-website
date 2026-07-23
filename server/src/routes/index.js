@@ -4,6 +4,8 @@ import servicesRouter from './services.js';
 import projectsRouter from './projects.js';
 import testimonialsRouter from './testimonials.js';
 import faqRouter from './faq.js';
+import blogRouter from './blog.js';
+import inquiriesRouter from './inquiries.js';
 
 const router = Router();
 
@@ -12,5 +14,7 @@ router.use('/services', servicesRouter);
 router.use('/projects', projectsRouter);
 router.use('/testimonials', testimonialsRouter);
 router.use('/faq', faqRouter);
+router.use('/blog', blogRouter);
+router.use('/inquiries', inquiriesRouter);
 
 export default router;
