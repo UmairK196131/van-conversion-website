@@ -7,24 +7,37 @@ import { SITE } from './config/site.js';
 
 const app = document.getElementById('app');
 
-function mountPage(path, route) {
+function mountPage(path, route, params = {}) {
   if (!app || !route) return;
 
-  const mainContentPromise = Promise.resolve(route.render());
+  Promise.resolve(route.render(params)).then((result) => {
+    let mainContent = result;
+    let pageTitle = route.title;
+    let pageDescription = route.description;
+    let pageImage;
 
-  mainContentPromise.then((mainContent) => {
+    if (result && typeof result === 'object' && 'html' in result) {
+      mainContent = result.html;
+      if (result.meta) {
+        pageTitle = result.meta.title ?? pageTitle;
+        pageDescription = result.meta.description ?? pageDescription;
+        pageImage = result.meta.image;
+      }
+    }
+
     app.innerHTML = renderLayout({
       currentPath: path,
       mainContent,
-      pageTitle: route.title,
-      pageDescription: route.description,
+      pageTitle,
+      pageDescription,
+      pageImage,
     });
 
     bindLayout();
     syncThemeToggleButtons(document.documentElement.dataset.theme ?? 'light');
     document.getElementById('main-content')?.focus({ preventScroll: true });
 
-    if (route.mount) route.mount(router);
+    if (route.mount) route.mount(router, params);
   });
 }
 

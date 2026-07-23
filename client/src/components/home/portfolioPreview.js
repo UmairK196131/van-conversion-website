@@ -1,23 +1,18 @@
-function projectImage(project) {
-  if (project.afterImage) return project.afterImage;
-  if (Array.isArray(project.gallery) && project.gallery.length) return project.gallery[0];
-  return `https://placehold.co/800x600/1C2541/6EA8FF?text=${encodeURIComponent(project.title)}`;
-}
+import { projectCoverImage, renderLazyImage } from '../../lib/images.js';
 
 export function renderPortfolioPreview(projects) {
   const cards = projects
     .map(
       (project) => `<article class="portfolio-card" data-animate-item>
-        <a href="/portfolio" data-nav-link class="portfolio-card__link">
+        <a href="/portfolio/${project.slug}" data-nav-link class="portfolio-card__link">
           <div class="portfolio-card__media">
-            <img
-              src="${projectImage(project)}"
-              alt="${project.title}"
-              class="portfolio-card__image"
-              loading="lazy"
-              width="800"
-              height="600"
-            />
+            ${renderLazyImage({
+              src: projectCoverImage(project),
+              alt: project.title,
+              className: 'portfolio-card__image',
+              width: 800,
+              height: 600,
+            })}
             <div class="portfolio-card__overlay">
               <span class="portfolio-card__cta">View Project</span>
             </div>

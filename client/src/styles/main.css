@@ -973,4 +973,189 @@
   .faq-item__answer > *:first-child {
     @apply mt-0;
   }
+
+  /* Portfolio filters */
+  .filter-tabs {
+    @apply mb-10 flex flex-wrap justify-center gap-2;
+  }
+
+  .filter-tabs__tab {
+    @apply border-border text-text-muted rounded-full border bg-transparent px-5 py-2 text-sm font-medium transition-colors dark:border-border-dark dark:text-text-muted-on-dark;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .filter-tabs__tab:hover {
+    @apply border-accent text-accent;
+  }
+
+  .filter-tabs__tab--active {
+    @apply bg-accent border-accent text-white;
+  }
+
+  .portfolio-empty {
+    @apply text-text-muted rounded-2xl border border-dashed px-6 py-16 text-center dark:text-text-muted-on-dark;
+    border-color: var(--color-border);
+  }
+
+  /* Before / After slider */
+  .before-after {
+    @apply overflow-hidden rounded-2xl;
+  }
+
+  .before-after__frame {
+    @apply relative aspect-[3/2] w-full cursor-ew-resize overflow-hidden bg-primary;
+    touch-action: none;
+  }
+
+  .before-after__image {
+    @apply absolute inset-0 h-full w-full object-cover;
+  }
+
+  .before-after__image--before {
+    @apply max-w-none;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .before-after__before {
+    @apply absolute inset-y-0 left-0 overflow-hidden;
+  }
+
+  .before-after__divider {
+    @apply absolute inset-y-0 z-10 w-1 -translate-x-1/2 bg-white shadow-lg;
+    cursor: ew-resize;
+  }
+
+  .before-after__handle {
+    @apply bg-accent absolute top-1/2 left-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-white shadow-lg;
+  }
+
+  .before-after__handle svg {
+    @apply h-5 w-5;
+  }
+
+  .before-after__label {
+    @apply absolute bottom-4 rounded-full bg-primary/70 px-3 py-1 text-xs font-semibold tracking-wide text-white uppercase;
+  }
+
+  .before-after__label--before {
+    @apply left-4;
+  }
+
+  .before-after__label--after {
+    @apply right-4;
+  }
+
+  .before-after--dragging .before-after__frame {
+    @apply select-none;
+  }
+
+  /* Project detail */
+  .project-detail__content {
+    @apply py-section;
+  }
+
+  .project-detail__layout {
+    @apply grid gap-10 lg:grid-cols-[1fr_320px] lg:gap-16;
+  }
+
+  .project-detail__main {
+    @apply space-y-12;
+  }
+
+  .project-section__title {
+    @apply mb-6 text-2xl font-bold;
+  }
+
+  .project-specs {
+    @apply border-border bg-surface mb-6 space-y-4 rounded-2xl border p-6 dark:border-border-dark dark:bg-secondary;
+  }
+
+  .project-specs__item {
+    @apply border-border border-b pb-4 last:border-0 last:pb-0 dark:border-border-dark;
+  }
+
+  .project-specs__label {
+    @apply text-text-muted mb-1 text-xs font-semibold tracking-wide uppercase dark:text-text-muted-on-dark;
+  }
+
+  .project-specs__value {
+    @apply text-base font-medium;
+  }
+
+  .project-detail__cta,
+  .project-detail__back {
+    @apply w-full justify-center;
+  }
+
+  .project-detail__back {
+    @apply mt-3;
+  }
+
+  .project-gallery__grid {
+    @apply grid gap-4 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .project-gallery__thumb {
+    @apply overflow-hidden rounded-xl border-0 p-0 transition-transform hover:scale-[1.02];
+    cursor: pointer;
+    background: none;
+  }
+
+  .project-gallery__image {
+    @apply aspect-[4/3] w-full object-cover;
+  }
+
+  .project-lightbox {
+    @apply border-0 bg-primary/90 p-4 backdrop:bg-primary/90;
+    max-width: min(90vw, 1200px);
+  }
+
+  .project-lightbox::backdrop {
+    @apply bg-primary/80;
+  }
+
+  .project-lightbox__image {
+    @apply max-h-[80vh] w-full rounded-lg object-contain;
+  }
+
+  .project-lightbox__close {
+    @apply absolute top-4 right-4 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-2xl text-white;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Testimonials grid */
+  .testimonials-grid {
+    @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .testimonials-grid__card {
+    @apply border-border bg-surface flex h-full flex-col rounded-2xl border p-6 shadow-sm dark:border-border-dark dark:bg-secondary;
+  }
+
+  .testimonials-grid__rating {
+    @apply mb-4 flex gap-1;
+  }
+
+  .testimonials-grid__quote {
+    @apply text-text-muted mb-6 flex-1 text-sm leading-relaxed italic dark:text-text-muted-on-dark;
+  }
+
+  .testimonials-grid__author {
+    @apply flex items-center gap-3 not-italic;
+  }
+
+  .testimonials-grid__avatar {
+    @apply h-12 w-12 rounded-full object-cover;
+  }
+
+  .testimonials-grid__avatar--placeholder {
+    @apply bg-accent/10 text-accent flex items-center justify-center text-sm font-bold;
+  }
+
+  .testimonials-grid__name {
+    @apply text-sm font-semibold not-italic;
+  }
 }

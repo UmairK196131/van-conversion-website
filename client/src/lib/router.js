@@ -1,5 +1,23 @@
+function compileRoute(path) {
+  const paramNames = [];
+  const pattern = path.replace(/\/+$/, '').replace(/:([a-zA-Z]+)/g, (_, name) => {
+    paramNames.push(name);
+    return '([^/]+)';
+  });
+
+  return {
+    path,
+    paramNames,
+    regex: new RegExp(`^${pattern}$`),
+  };
+}
+
 export function createRouter({ routes, onRouteChange, notFound }) {
   let currentPath = null;
+  const compiledRoutes = routes.map((route) => ({
+    ...route,
+    ...(route.path.includes(':') ? { compiled: compileRoute(route.path) } : {}),
+  }));
 
   function normalizePath(path) {
     if (!path || path === '/') return '/';
@@ -8,7 +26,26 @@ export function createRouter({ routes, onRouteChange, notFound }) {
 
   function matchRoute(path) {
     const normalized = normalizePath(path);
-    return routes.find((route) => route.path === normalized) ?? null;
+
+    for (const route of compiledRoutes) {
+      if (route.compiled) {
+        const match = normalized.match(route.compiled.regex);
+        if (!match) continue;
+
+        const params = {};
+        route.compiled.paramNames.forEach((name, index) => {
+          params[name] = decodeURIComponent(match[index + 1]);
+        });
+
+        return { route, params };
+      }
+
+      if (route.path === normalized) {
+        return { route, params: {} };
+      }
+    }
+
+    return null;
   }
 
   function getCurrentPath() {
@@ -18,7 +55,8 @@ export function createRouter({ routes, onRouteChange, notFound }) {
   function navigate(path, { replace = false } = {}) {
     const normalized = normalizePath(path);
     if (normalized === getCurrentPath()) {
-      onRouteChange(normalized, matchRoute(normalized));
+      const matched = matchRoute(normalized);
+      onRouteChange(normalized, matched?.route ?? null, matched?.params ?? {});
       return;
     }
 
@@ -33,11 +71,11 @@ export function createRouter({ routes, onRouteChange, notFound }) {
 
   function render(path = getCurrentPath()) {
     const normalized = normalizePath(path);
-    const route = matchRoute(normalized);
+    const matched = matchRoute(normalized);
     currentPath = normalized;
 
-    if (route) {
-      onRouteChange(normalized, route);
+    if (matched) {
+      onRouteChange(normalized, matched.route, matched.params);
     } else {
       notFound(normalized);
     }
@@ -66,6 +104,6 @@ export function createRouter({ routes, onRouteChange, notFound }) {
     render,
     start,
     getCurrentPath: () => currentPath ?? getCurrentPath(),
-    matchRoute,
+    matchRoute: (path) => matchRoute(path)?.route ?? null,
   };
 }

@@ -92,8 +92,58 @@ async function main() {
       slug: 'mercedes-sprinter-adventure',
       description: 'A fully equipped overland Sprinter with pop-top roof and full kitchen.',
       vehicleModel: 'Mercedes Sprinter LWB',
+      beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+      afterImage: 'https://placehold.co/1200x800/1C2541/3A86FF?text=After',
       isFeatured: true,
-      gallery: ['https://placehold.co/800x600/1C2541/3A86FF?text=Gallery+1'],
+      gallery: [
+        'https://placehold.co/800x600/1C2541/3A86FF?text=Gallery+1',
+        'https://placehold.co/800x600/1C2541/6EA8FF?text=Gallery+2',
+      ],
+    },
+  });
+
+  await prisma.project.upsert({
+    where: { slug: 'ford-transit-family-explorer' },
+    update: {},
+    create: {
+      title: 'Ford Transit Family Explorer',
+      slug: 'ford-transit-family-explorer',
+      description: 'A family-friendly Transit with bunk beds, full bathroom, and ample storage.',
+      vehicleModel: 'Ford Transit High Roof',
+      beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+      afterImage: 'https://placehold.co/1200x800/1C2541/4CC9F0?text=After',
+      isFeatured: true,
+      gallery: ['https://placehold.co/800x600/1C2541/4CC9F0?text=Transit+Gallery'],
+    },
+  });
+
+  await prisma.project.upsert({
+    where: { slug: 'ram-promaster-urban-camper' },
+    update: {},
+    create: {
+      title: 'Ram ProMaster Urban Camper',
+      slug: 'ram-promaster-urban-camper',
+      description: 'Compact city-friendly ProMaster with murphy bed and modular kitchen pod.',
+      vehicleModel: 'Ram ProMaster 159',
+      beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+      afterImage: 'https://placehold.co/1200x800/1C2541/8338EC?text=After',
+      isFeatured: true,
+      gallery: ['https://placehold.co/800x600/1C2541/8338EC?text=ProMaster+Gallery'],
+    },
+  });
+
+  await prisma.project.upsert({
+    where: { slug: 'sprinter-off-grid-weekender' },
+    update: {},
+    create: {
+      title: 'Sprinter Off-Grid Weekender',
+      slug: 'sprinter-off-grid-weekender',
+      description: 'Solar-powered weekend warrior with lithium bank and outdoor shower.',
+      vehicleModel: 'Mercedes Sprinter 144',
+      beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+      afterImage: 'https://placehold.co/1200x800/1C2541/3A86FF?text=After',
+      isFeatured: false,
+      gallery: ['https://placehold.co/800x600/1C2541/3A86FF?text=Weekender'],
     },
   });
 
@@ -208,7 +258,7 @@ async function main() {
   });
 
   console.log(
-    `Seeded: admin user, ${services.length} services, sample project, testimonial, blog post, FAQ items`
+    `Seeded: admin user, ${services.length} services, ${4} projects, testimonials, blog post, FAQ items`
   );
 }
 

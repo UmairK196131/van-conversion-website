@@ -179,13 +179,13 @@ Sprint 1, Sprint 2
 
 ### Tasks
 
-- [ ] **Portfolio Page** — Grid layout with filter tabs (All, Sprinter, Transit, ProMaster, etc.)
-- [ ] **Project Detail Page** — `/portfolio/:slug` with image gallery, description, specs, before/after
-- [ ] **Before/After Slider** — Interactive drag comparison component (SRS §13)
-- [ ] **Testimonials Page** — Full testimonial grid with star ratings, client photos, and quotes
-- [ ] Connect to `/api/projects` and `/api/testimonials`
-- [ ] Image lazy loading and WebP optimization for gallery images
-- [ ] Add structured data (JSON-LD) for projects
+- [x] **Portfolio Page** — Grid layout with filter tabs (All, Sprinter, Transit, ProMaster, etc.)
+- [x] **Project Detail Page** — `/portfolio/:slug` with image gallery, description, specs, before/after
+- [x] **Before/After Slider** — Interactive drag comparison component (SRS §13)
+- [x] **Testimonials Page** — Full testimonial grid with star ratings, client photos, and quotes
+- [x] Connect to `/api/projects` and `/api/testimonials`
+- [x] Image lazy loading and WebP optimization for gallery images
+- [x] Add structured data (JSON-LD) for projects
 
 ### Acceptance Criteria
 

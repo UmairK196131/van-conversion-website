@@ -3,11 +3,12 @@ import { renderFooter } from './footer.js';
 import { renderScrollToTop, bindScrollToTop } from './scrollToTop.js';
 import { setPageMeta } from '../lib/seo.js';
 
-export function renderLayout({ currentPath, mainContent, pageTitle, pageDescription }) {
+export function renderLayout({ currentPath, mainContent, pageTitle, pageDescription, pageImage }) {
   setPageMeta({
     title: pageTitle,
     description: pageDescription,
     path: currentPath,
+    image: pageImage,
   });
 
   return `${renderHeader(currentPath)}

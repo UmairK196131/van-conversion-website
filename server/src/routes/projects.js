@@ -1,8 +1,14 @@
 import { Router } from 'express';
-import { listFeaturedProjects } from '../controllers/projectsController.js';
+import {
+  getProjectBySlug,
+  listFeaturedProjects,
+  listProjects,
+} from '../controllers/projectsController.js';
 
 const router = Router();
 
 router.get('/featured', listFeaturedProjects);
+router.get('/', listProjects);
+router.get('/:slug', getProjectBySlug);
 
 export default router;

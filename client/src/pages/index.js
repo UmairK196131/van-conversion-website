@@ -4,6 +4,9 @@ import { renderAboutPage, mountAboutPage } from '../components/about/index.js';
 import { renderServicesPage, mountServicesPage } from '../components/services/index.js';
 import { renderProcessPage, mountProcessPage } from '../components/process/index.js';
 import { renderFaqPage, mountFaqPage } from '../components/faq/index.js';
+import { renderPortfolioPage, mountPortfolioPage } from '../components/portfolio/index.js';
+import { renderProjectDetailPage, mountProjectDetailPage } from '../components/portfolio/detail.js';
+import { renderTestimonialsPage, mountTestimonialsPage } from '../components/testimonials/index.js';
 
 function pageShell({ title, description, children = '' }) {
   return `<section class="page-placeholder">
@@ -46,14 +49,16 @@ export const pages = {
   portfolio: {
     path: '/portfolio',
     title: `Portfolio | ${SITE.name}`,
-    description:
-      'Browse completed van conversions and before/after showcases. Gallery arrives in Sprint 4.',
-    render: () =>
-      pageShell({
-        title: 'Portfolio',
-        description:
-          'Browse completed van conversions and before/after showcases. Gallery arrives in Sprint 4.',
-      }),
+    description: 'Browse completed van conversions and before/after showcases from our workshop.',
+    render: () => renderPortfolioPage(),
+    mount: () => mountPortfolioPage(),
+  },
+  projectDetail: {
+    path: '/portfolio/:slug',
+    title: `Project | ${SITE.name}`,
+    description: 'View project details, gallery, and before/after comparison.',
+    render: (params) => renderProjectDetailPage(params.slug),
+    mount: () => mountProjectDetailPage(),
   },
   process: {
     path: '/process',
@@ -66,14 +71,9 @@ export const pages = {
   testimonials: {
     path: '/testimonials',
     title: `Testimonials | ${SITE.name}`,
-    description:
-      'Hear from adventurers who trusted us with their builds. Full testimonials arrive in Sprint 4.',
-    render: () =>
-      pageShell({
-        title: 'Testimonials',
-        description:
-          'Hear from adventurers who trusted us with their builds. Full testimonials arrive in Sprint 4.',
-      }),
+    description: 'Hear from adventurers who trusted us with their van conversion builds.',
+    render: () => renderTestimonialsPage(),
+    mount: () => mountTestimonialsPage(),
   },
   blog: {
     path: '/blog',

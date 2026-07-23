@@ -127,8 +127,46 @@ const FALLBACK_PROJECTS = [
     slug: 'mercedes-sprinter-adventure',
     description: 'A fully equipped overland Sprinter with pop-top roof and full kitchen.',
     vehicleModel: 'Mercedes Sprinter LWB',
-    afterImage: null,
-    gallery: ['https://placehold.co/800x600/1C2541/3A86FF?text=Sprinter+Adventure'],
+    beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+    afterImage: 'https://placehold.co/1200x800/1C2541/3A86FF?text=After',
+    gallery: [
+      'https://placehold.co/800x600/1C2541/3A86FF?text=Gallery+1',
+      'https://placehold.co/800x600/1C2541/6EA8FF?text=Gallery+2',
+    ],
+    isFeatured: true,
+  },
+  {
+    id: 2,
+    title: 'Ford Transit Family Explorer',
+    slug: 'ford-transit-family-explorer',
+    description: 'A family-friendly Transit with bunk beds, full bathroom, and ample storage.',
+    vehicleModel: 'Ford Transit High Roof',
+    beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+    afterImage: 'https://placehold.co/1200x800/1C2541/4CC9F0?text=After',
+    gallery: ['https://placehold.co/800x600/1C2541/4CC9F0?text=Transit+Gallery'],
+    isFeatured: true,
+  },
+  {
+    id: 3,
+    title: 'Ram ProMaster Urban Camper',
+    slug: 'ram-promaster-urban-camper',
+    description: 'Compact city-friendly ProMaster with murphy bed and modular kitchen pod.',
+    vehicleModel: 'Ram ProMaster 159',
+    beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+    afterImage: 'https://placehold.co/1200x800/1C2541/8338EC?text=After',
+    gallery: ['https://placehold.co/800x600/1C2541/8338EC?text=ProMaster+Gallery'],
+    isFeatured: true,
+  },
+  {
+    id: 4,
+    title: 'Sprinter Off-Grid Weekender',
+    slug: 'sprinter-off-grid-weekender',
+    description: 'Solar-powered weekend warrior with lithium bank and outdoor shower.',
+    vehicleModel: 'Mercedes Sprinter 144',
+    beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
+    afterImage: 'https://placehold.co/1200x800/1C2541/3A86FF?text=After',
+    gallery: ['https://placehold.co/800x600/1C2541/3A86FF?text=Weekender'],
+    isFeatured: false,
   },
 ];
 
@@ -176,9 +214,35 @@ export async function fetchServices() {
 export async function fetchFeaturedProjects() {
   try {
     const { data } = await fetchJson('/api/projects/featured');
-    return data?.length ? data : FALLBACK_PROJECTS;
+    return data?.length ? data : FALLBACK_PROJECTS.filter((project) => project.isFeatured);
   } catch {
-    return FALLBACK_PROJECTS;
+    return FALLBACK_PROJECTS.filter((project) => project.isFeatured);
+  }
+}
+
+function filterFallbackProjects(vehicle) {
+  if (!vehicle || vehicle === 'all') return FALLBACK_PROJECTS;
+
+  const term = vehicle.toLowerCase();
+  return FALLBACK_PROJECTS.filter((project) => project.vehicleModel.toLowerCase().includes(term));
+}
+
+export async function fetchProjects(vehicle) {
+  try {
+    const query = vehicle ? `?vehicle=${encodeURIComponent(vehicle)}` : '';
+    const { data } = await fetchJson(`/api/projects${query}`);
+    return data?.length ? data : filterFallbackProjects(vehicle);
+  } catch {
+    return filterFallbackProjects(vehicle);
+  }
+}
+
+export async function fetchProject(slug) {
+  try {
+    const { data } = await fetchJson(`/api/projects/${encodeURIComponent(slug)}`);
+    return data ?? null;
+  } catch {
+    return FALLBACK_PROJECTS.find((project) => project.slug === slug) ?? null;
   }
 }
 
