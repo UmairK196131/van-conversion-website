@@ -369,3 +369,21 @@ export async function submitInquiry(payload) {
   });
   return data;
 }
+
+export async function subscribeNewsletter(payload) {
+  const { data } = await fetchJson('/api/newsletter', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  return data;
+}
+
+export async function requestBrochure(payload) {
+  const { data } = await fetchJson('/api/newsletter/brochure', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  return data;
+}

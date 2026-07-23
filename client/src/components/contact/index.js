@@ -27,6 +27,27 @@ function renderServiceOptions(services) {
   return options.join('');
 }
 
+function renderCalendlyEmbed() {
+  if (!SITE.calendlyUrl) return '';
+
+  return `<section class="static-section static-section--alt" data-animate-section aria-label="Book an appointment">
+    <div class="container">
+      <div class="section-header" data-animate-item>
+        <p class="section-eyebrow">Schedule a Call</p>
+        <h2 class="section-title">Book a Consultation</h2>
+        <p class="section-description">Pick a time that works for you — we will walk through your ideas and answer your questions.</p>
+      </div>
+      <div class="calendly-embed" data-animate-item>
+        <iframe
+          src="${SITE.calendlyUrl}?hide_gdpr_banner=1"
+          title="Book a consultation with ${SITE.name}"
+          class="calendly-embed__iframe"
+          loading="lazy"
+        ></iframe>
+      </div>
+    </div>
+  </section>`;
+}
 function renderContactInfo() {
   return `<div class="contact-info" data-animate-item>
     <h2 class="contact-info__title">Visit Our Workshop</h2>
@@ -133,6 +154,7 @@ export async function renderContactPage() {
         ${renderContactInfo()}
       </div>
     </section>
+    ${renderCalendlyEmbed()}
   </div>`;
 }
 

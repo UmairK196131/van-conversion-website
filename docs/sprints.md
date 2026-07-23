@@ -289,17 +289,17 @@ Sprint 0 (API + DB + Auth), Sprint 5 (inquiries table populated)
 
 ### Tasks
 
-- [ ] **WhatsApp Chat Widget** — Floating button with pre-filled message
-- [ ] **Cost Estimator** — Multi-step form (vehicle type, features, finish level → estimated range)
-- [ ] **Newsletter Signup** — Footer/modal form → `POST /api/newsletter` → Mailchimp/Buttondown
-- [ ] **Brochure Download** — PDF download gated by email capture (optional)
-- [ ] **Live Chat** — Tawk.to or Crisp widget integration
-- [ ] **Appointment Booking** — Calendly embed on Contact page
-- [ ] **360° Van Viewer** — If assets available, integrate panorama viewer (Pannellum or similar)
-- [ ] **Interactive Hero Video** — Autoplay muted video with play/pause control
-- [ ] Final GSAP animation pass across all pages
-- [ ] Cross-browser testing (Chrome, Firefox, Safari, Edge)
-- [ ] Accessibility audit and fixes
+- [x] **WhatsApp Chat Widget** — Floating button with pre-filled message
+- [x] **Cost Estimator** — Multi-step form (vehicle type, features, finish level → estimated range)
+- [x] **Newsletter Signup** — Footer/modal form → `POST /api/newsletter` → Mailchimp/Buttondown
+- [x] **Brochure Download** — PDF download gated by email capture (optional)
+- [x] **Live Chat** — Tawk.to or Crisp widget integration
+- [x] **Appointment Booking** — Calendly embed on Contact page
+- [x] **360° Van Viewer** — If assets available, integrate panorama viewer (Pannellum or similar)
+- [x] **Interactive Hero Video** — Autoplay muted video with play/pause control
+- [x] Final GSAP animation pass across all pages
+- [x] Cross-browser testing (Chrome, Firefox, Safari, Edge)
+- [x] Accessibility audit and fixes
 
 ### Acceptance Criteria
 

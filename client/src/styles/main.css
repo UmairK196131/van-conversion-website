@@ -210,7 +210,7 @@
   }
 
   .site-footer__grid {
-    @apply grid gap-10 sm:grid-cols-2 lg:grid-cols-3;
+    @apply grid gap-10 sm:grid-cols-2 lg:grid-cols-4;
   }
 
   .site-footer__tagline {
@@ -256,6 +256,14 @@
     opacity: 0;
     transform: translateY(1rem);
     pointer-events: none;
+  }
+
+  .whatsapp-widget {
+    @apply fixed right-4 bottom-20 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg transition-transform hover:scale-105 hover:bg-[#1ebe57];
+  }
+
+  .whatsapp-widget__icon {
+    @apply h-7 w-7;
   }
 
   .scroll-to-top--visible {
@@ -362,6 +370,14 @@
 
   .hero__actions {
     @apply flex flex-col gap-3 sm:flex-row;
+  }
+
+  .hero__video-control {
+    @apply absolute right-4 bottom-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/30 bg-black/40 text-white backdrop-blur-sm transition-colors hover:bg-black/60;
+  }
+
+  .hero__video-icon {
+    @apply h-5 w-5;
   }
 
   /* Services */
@@ -1358,5 +1374,183 @@
 
   .contact-map__iframe {
     @apply block w-full min-h-[280px];
+  }
+
+  /* ── Premium widgets (Sprint 7) ── */
+
+  .site-footer__newsletter-text {
+    @apply text-text-muted mb-4 text-sm dark:text-text-muted-on-dark;
+  }
+
+  .site-footer__brochure {
+    @apply text-text-muted mt-4 text-sm dark:text-text-muted-on-dark;
+  }
+
+  .inline-link-btn {
+    @apply text-accent hover:text-accent-hover cursor-pointer border-0 bg-transparent p-0 font-medium underline-offset-2 hover:underline;
+  }
+
+  .newsletter-form__fields {
+    @apply flex flex-col gap-2 sm:flex-row;
+  }
+
+  .newsletter-form__input {
+    @apply border-border bg-background text-text min-w-0 flex-1 rounded-lg border px-4 py-2.5 text-sm focus:border-accent focus:outline-none dark:border-border-dark dark:bg-background;
+  }
+
+  .newsletter-form__submit {
+    @apply shrink-0;
+  }
+
+  .newsletter-form__status,
+  .brochure-form__status {
+    @apply mb-3 rounded-lg px-4 py-3 text-sm;
+  }
+
+  .newsletter-form__status--hidden,
+  .brochure-form__status--hidden {
+    @apply hidden;
+  }
+
+  .newsletter-form__status--success,
+  .brochure-form__status--success {
+    @apply border border-green-200 bg-green-50 text-green-800 dark:border-green-800 dark:bg-green-950 dark:text-green-100;
+  }
+
+  .newsletter-form__status--error,
+  .brochure-form__status--error {
+    @apply border border-red-200 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-100;
+  }
+
+  .brochure-modal {
+    @apply border-border bg-surface text-text w-[min(100%-2rem,28rem)] max-w-lg rounded-2xl border p-0 shadow-2xl backdrop:bg-black/50 dark:border-border-dark dark:bg-secondary;
+  }
+
+  .brochure-modal::backdrop {
+    @apply bg-black/50;
+  }
+
+  .brochure-modal__inner {
+    @apply relative p-6 sm:p-8;
+  }
+
+  .brochure-modal__close {
+    @apply text-text-muted hover:text-text absolute top-3 right-4 text-2xl leading-none;
+  }
+
+  .brochure-modal__title {
+    @apply mb-2 text-2xl font-bold;
+  }
+
+  .brochure-modal__text {
+    @apply text-text-muted mb-6 text-sm dark:text-text-muted-on-dark;
+  }
+
+  .calendly-embed {
+    @apply overflow-hidden rounded-2xl border border-border shadow-sm dark:border-border-dark;
+  }
+
+  .calendly-embed__iframe {
+    @apply block h-[700px] w-full border-0;
+  }
+
+  .panorama-section {
+    @apply py-section;
+  }
+
+  .panorama-viewer {
+    @apply border-border h-[min(70vh,520px)] overflow-hidden rounded-2xl border shadow-sm dark:border-border-dark;
+  }
+
+  .panorama-viewer__fallback {
+    @apply text-text-muted flex h-full items-center justify-center p-6 text-center text-sm;
+  }
+
+  .estimator__card {
+    @apply border-border bg-surface mx-auto max-w-3xl rounded-2xl border p-6 shadow-sm sm:p-8 dark:border-border-dark dark:bg-secondary;
+  }
+
+  .estimator-steps {
+    @apply mb-8 flex flex-wrap justify-between gap-4;
+  }
+
+  .estimator-steps__item {
+    @apply text-text-muted flex flex-1 min-w-[4.5rem] flex-col items-center gap-2 text-center text-xs sm:text-sm dark:text-text-muted-on-dark;
+  }
+
+  .estimator-steps__item--active .estimator-steps__number {
+    @apply bg-accent text-white;
+  }
+
+  .estimator-steps__item--complete .estimator-steps__number {
+    @apply bg-accent/20 text-accent;
+  }
+
+  .estimator-steps__number {
+    @apply bg-surface border-border flex h-9 w-9 items-center justify-center rounded-full border text-sm font-semibold dark:border-border-dark dark:bg-background;
+  }
+
+  .estimator-panel--hidden {
+    @apply hidden;
+  }
+
+  .estimator-panel__title {
+    @apply mb-2 text-xl font-bold;
+  }
+
+  .estimator-panel__hint {
+    @apply text-text-muted mb-6 text-sm dark:text-text-muted-on-dark;
+  }
+
+  .estimator-options--grid {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+
+  .estimator-options--list {
+    @apply grid gap-3;
+  }
+
+  .estimator-option {
+    @apply block cursor-pointer;
+  }
+
+  .estimator-option input {
+    @apply sr-only;
+  }
+
+  .estimator-option__card {
+    @apply border-border bg-background block rounded-xl border p-4 transition-colors hover:border-accent dark:border-border-dark dark:bg-background;
+  }
+
+  .estimator-option input:checked + .estimator-option__card {
+    @apply border-accent ring-accent/30 ring-2;
+  }
+
+  .estimator-option input:focus-visible + .estimator-option__card {
+    @apply ring-accent ring-2 ring-offset-2;
+  }
+
+  .estimator-option__label {
+    @apply mb-1 block font-semibold;
+  }
+
+  .estimator-option__meta {
+    @apply text-text-muted block text-sm dark:text-text-muted-on-dark;
+  }
+
+  .estimator-form__nav {
+    @apply mt-8 flex justify-between gap-3;
+  }
+
+  .estimator-result__range {
+    @apply text-accent mb-2 text-4xl font-bold sm:text-5xl;
+  }
+
+  .estimator-result__note {
+    @apply text-text-muted mb-8 text-sm dark:text-text-muted-on-dark;
+  }
+
+  .estimator-result__actions {
+    @apply flex flex-col gap-3 sm:flex-row;
   }
 }

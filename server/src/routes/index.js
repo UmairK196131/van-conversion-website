@@ -6,6 +6,7 @@ import testimonialsRouter from './testimonials.js';
 import faqRouter from './faq.js';
 import blogRouter from './blog.js';
 import inquiriesRouter from './inquiries.js';
+import newsletterRouter from './newsletter.js';
 import authRouter from './auth.js';
 import adminRouter from './admin/index.js';
 
@@ -20,5 +21,6 @@ router.use('/testimonials', testimonialsRouter);
 router.use('/faq', faqRouter);
 router.use('/blog', blogRouter);
 router.use('/inquiries', inquiriesRouter);
+router.use('/newsletter', newsletterRouter);
 
 export default router;

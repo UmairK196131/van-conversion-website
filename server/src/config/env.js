@@ -25,5 +25,14 @@ export const config = {
     pass: process.env.SMTP_PASS || '',
     from: process.env.SMTP_FROM || 'noreply@vanconversion.com',
   },
+  mailchimp: {
+    apiKey: process.env.MAILCHIMP_API_KEY || '',
+    listId: process.env.MAILCHIMP_LIST_ID || '',
+    serverPrefix: process.env.MAILCHIMP_SERVER_PREFIX || '',
+  },
+  buttondown: {
+    apiKey: process.env.BUTTONDOWN_API_KEY || '',
+  },
+  brochureUrl: process.env.BROCHURE_URL || '/brochure/van-conversion-brochure.pdf',
   isProduction: process.env.NODE_ENV === 'production',
 };

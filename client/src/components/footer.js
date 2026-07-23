@@ -1,4 +1,5 @@
 import { SITE, FOOTER_LINKS, SOCIAL_LINKS } from '../config/site.js';
+import { renderNewsletterForm, bindNewsletterForm, bindBrochureModal } from './newsletter/index.js';
 
 function socialIcon(name) {
   const icons = {
@@ -50,6 +51,15 @@ export function renderFooter() {
           <h2 class="site-footer__heading">Follow Us</h2>
           <ul class="site-footer__social">${socialLinks}</ul>
         </div>
+
+        <div>
+          <h2 class="site-footer__heading">Stay Updated</h2>
+          <p class="site-footer__newsletter-text">Get build stories, van life tips, and workshop news.</p>
+          ${renderNewsletterForm({ idPrefix: 'footer-newsletter', compact: true })}
+          <p class="site-footer__brochure">
+            <button type="button" class="inline-link-btn" data-brochure-trigger>Download our brochure</button>
+          </p>
+        </div>
       </div>
 
       <div class="site-footer__bottom">
@@ -57,4 +67,9 @@ export function renderFooter() {
       </div>
     </div>
   </footer>`;
+}
+
+export function bindFooter() {
+  bindNewsletterForm();
+  bindBrochureModal();
 }

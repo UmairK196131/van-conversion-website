@@ -8,6 +8,7 @@ import { renderPortfolioPreview } from './portfolioPreview.js';
 import { renderTestimonials, bindTestimonialsCarousel } from './testimonials.js';
 import { renderCtaBanner } from './ctaBanner.js';
 import { renderContactSnippet, bindContactSnippet } from './contactSnippet.js';
+import { renderPanoramaViewer, bindPanoramaViewer } from '../widgets/panoramaViewer.js';
 
 export async function renderHomePage() {
   const [services, projects, testimonials] = await Promise.all([
@@ -24,6 +25,7 @@ export async function renderHomePage() {
     ${renderPortfolioPreview(projects)}
     ${renderTestimonials(testimonials)}
     ${renderCtaBanner()}
+    ${renderPanoramaViewer()}
     ${renderContactSnippet()}
   </div>`;
 }
@@ -33,5 +35,6 @@ export function mountHomePage(router) {
   bindHero();
   bindTestimonialsCarousel();
   bindContactSnippet(router);
+  bindPanoramaViewer();
   requestAnimationFrame(() => initHomeAnimations());
 }

@@ -19,6 +19,20 @@ export function renderHero() {
       >
         <source src="${HERO_VIDEO}" type="video/mp4" />
       </video>
+      <button
+        type="button"
+        class="hero__video-control"
+        data-hero-video-toggle
+        aria-label="Pause background video"
+        aria-pressed="false"
+      >
+        <svg class="hero__video-icon hero__video-icon--pause" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M6 5h4v14H6V5zm8 0h4v14h-4V5z"/>
+        </svg>
+        <svg class="hero__video-icon hero__video-icon--play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" hidden>
+          <path d="M8 5v14l11-7L8 5z"/>
+        </svg>
+      </button>
       <img class="hero__image" src="${HERO_POSTER}" alt="" loading="eager" fetchpriority="high" />
     </div>
     <div class="hero__overlay" aria-hidden="true"></div>
@@ -42,14 +56,42 @@ export function bindHero() {
   const video = document.querySelector('[data-hero-video]');
   if (!video) return;
 
+  const toggleButton = document.querySelector('[data-hero-video-toggle]');
+  const pauseIcon = toggleButton?.querySelector('.hero__video-icon--pause');
+  const playIcon = toggleButton?.querySelector('.hero__video-icon--play');
+
+  const updateToggleState = (isPlaying) => {
+    if (!toggleButton) return;
+    toggleButton.setAttribute(
+      'aria-label',
+      isPlaying ? 'Pause background video' : 'Play background video'
+    );
+    toggleButton.setAttribute('aria-pressed', isPlaying ? 'false' : 'true');
+    if (pauseIcon) pauseIcon.hidden = !isPlaying;
+    if (playIcon) playIcon.hidden = isPlaying;
+  };
+
   const playVideo = () => {
-    video.play().catch(() => {
-      video.classList.add('hero__video--hidden');
-    });
+    video
+      .play()
+      .then(() => updateToggleState(true))
+      .catch(() => {
+        video.classList.add('hero__video--hidden');
+      });
   };
 
   video.addEventListener('error', () => {
     video.classList.add('hero__video--hidden');
+    toggleButton?.setAttribute('hidden', '');
+  });
+
+  toggleButton?.addEventListener('click', () => {
+    if (video.paused) {
+      playVideo();
+    } else {
+      video.pause();
+      updateToggleState(false);
+    }
   });
 
   if (video.readyState >= 2) {

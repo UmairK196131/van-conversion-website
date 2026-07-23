@@ -10,6 +10,7 @@ import { renderTestimonialsPage, mountTestimonialsPage } from '../components/tes
 import { renderBlogPage, mountBlogPage } from '../components/blog/index.js';
 import { renderBlogDetailPage, mountBlogDetailPage } from '../components/blog/detail.js';
 import { renderContactPage, mountContactPage } from '../components/contact/index.js';
+import { renderEstimatorPage, mountEstimatorPage } from '../components/estimator/index.js';
 
 const DEFAULT_DESCRIPTION = SITE.tagline;
 
@@ -97,6 +98,14 @@ export const pages = {
       'Ready to start your van conversion? Get in touch for a free consultation and custom quote.',
     render: () => renderContactPage(),
     mount: () => mountContactPage(),
+  },
+  estimator: {
+    path: '/estimator',
+    title: `Cost Estimator | ${SITE.name}`,
+    description:
+      'Estimate your van conversion cost with our interactive tool — vehicle type, features, and finish level.',
+    render: () => renderEstimatorPage(),
+    mount: () => mountEstimatorPage(),
   },
 };
 

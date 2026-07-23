@@ -1,6 +1,8 @@
 import { renderHeader, bindHeader } from './header.js';
-import { renderFooter } from './footer.js';
+import { renderFooter, bindFooter } from './footer.js';
 import { renderScrollToTop, bindScrollToTop } from './scrollToTop.js';
+import { renderWhatsAppWidget } from './widgets/whatsappWidget.js';
+import { renderBrochureModal } from './newsletter/index.js';
 import { setPageMeta } from '../lib/seo.js';
 
 export function renderLayout({ currentPath, mainContent, pageTitle, pageDescription, pageImage }) {
@@ -16,10 +18,13 @@ export function renderLayout({ currentPath, mainContent, pageTitle, pageDescript
       ${mainContent}
     </main>
     ${renderFooter()}
-    ${renderScrollToTop()}`;
+    ${renderScrollToTop()}
+    ${renderWhatsAppWidget()}
+    ${renderBrochureModal()}`;
 }
 
 export function bindLayout() {
   bindHeader();
+  bindFooter();
   bindScrollToTop();
 }

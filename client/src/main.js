@@ -1,6 +1,7 @@
 import './styles/main.css';
 import { createRouter } from './lib/router.js';
 import { initTheme, toggleTheme, syncThemeToggleButtons } from './lib/theme.js';
+import { initLiveChat } from './components/widgets/liveChat.js';
 import { renderLayout, bindLayout } from './components/layout.js';
 import { routes } from './pages/index.js';
 import { SITE } from './config/site.js';
@@ -78,5 +79,6 @@ const router = createRouter({
 
 const theme = initTheme();
 syncThemeToggleButtons(theme);
+initLiveChat();
 
 router.start();
