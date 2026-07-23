@@ -1,15 +1,11 @@
 import { SITE, NAV_LINKS } from '../config/site.js';
 
-function sunIcon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-    <circle cx="12" cy="12" r="4"/>
-    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
-  </svg>`;
-}
+const CONTACT_PATH = '/contact';
 
-function moonIcon() {
-  return `<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+function mailIcon() {
+  return `<svg xmlns="http://www.w3.org/2000/svg" class="nav-cta__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+    <rect x="2" y="4" width="20" height="16" rx="2"/>
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
   </svg>`;
 }
 
@@ -25,18 +21,34 @@ function closeIcon() {
   </svg>`;
 }
 
+function renderContactCta(currentPath, variant) {
+  const isActive = currentPath === CONTACT_PATH;
+
+  return `<a
+    href="${CONTACT_PATH}"
+    data-nav-link
+    class="nav-cta btn btn--primary nav-cta--${variant}${isActive ? ' nav-cta--active' : ''}"
+    ${isActive ? 'aria-current="page"' : ''}
+  >
+    ${mailIcon()}
+    <span>Contact Us</span>
+  </a>`;
+}
+
 export function renderHeader(currentPath) {
-  const navItems = NAV_LINKS.map((link) => {
-    const isActive = link.path === currentPath;
-    return `<li>
-      <a
-        href="${link.path}"
-        data-nav-link
-        class="nav-link${isActive ? ' nav-link--active' : ''}"
-        ${isActive ? 'aria-current="page"' : ''}
-      >${link.label}</a>
-    </li>`;
-  }).join('');
+  const navItems = NAV_LINKS.filter((link) => link.path !== CONTACT_PATH)
+    .map((link) => {
+      const isActive = link.path === currentPath;
+      return `<li>
+        <a
+          href="${link.path}"
+          data-nav-link
+          class="nav-link${isActive ? ' nav-link--active' : ''}"
+          ${isActive ? 'aria-current="page"' : ''}
+        >${link.label}</a>
+      </li>`;
+    })
+    .join('');
 
   return `<header id="site-header" class="site-header">
     <div class="site-header__inner">
@@ -60,21 +72,15 @@ export function renderHeader(currentPath) {
 
         <ul id="nav-menu" class="site-nav__menu">
           ${navItems}
-          <li class="site-nav__theme">
-            <button type="button" class="theme-toggle" data-theme-toggle aria-pressed="false" aria-label="Switch theme">
-              <span class="theme-toggle__icon theme-toggle__icon--light">${sunIcon()}</span>
-              <span class="theme-toggle__icon theme-toggle__icon--dark">${moonIcon()}</span>
-              <span data-theme-label class="sr-only">Theme</span>
-            </button>
+          <li class="site-nav__cta-mobile">
+            ${renderContactCta(currentPath, 'mobile')}
           </li>
         </ul>
       </nav>
 
-      <button type="button" class="theme-toggle theme-toggle--desktop" data-theme-toggle aria-pressed="false" aria-label="Switch theme">
-        <span class="theme-toggle__icon theme-toggle__icon--light">${sunIcon()}</span>
-        <span class="theme-toggle__icon theme-toggle__icon--dark">${moonIcon()}</span>
-        <span data-theme-label class="sr-only">Theme</span>
-      </button>
+      <div class="site-header__cta">
+        ${renderContactCta(currentPath, 'desktop')}
+      </div>
     </div>
   </header>`;
 }

@@ -1,6 +1,6 @@
 import './styles/main.css';
 import { createRouter } from './lib/router.js';
-import { initTheme, toggleTheme, syncThemeToggleButtons } from './lib/theme.js';
+import { initTheme } from './lib/theme.js';
 import { initLiveChat } from './components/widgets/liveChat.js';
 import { renderLayout, bindLayout } from './components/layout.js';
 import { routes } from './pages/index.js';
@@ -40,7 +40,6 @@ function mountPage(path, route, params = {}) {
     });
 
     bindLayout();
-    syncThemeToggleButtons(document.documentElement.dataset.theme ?? 'light');
     document.getElementById('main-content')?.focus({ preventScroll: true });
 
     if (route.mount) route.mount(router, params);
@@ -67,14 +66,7 @@ function mountNotFound(path) {
   });
 
   bindLayout();
-  syncThemeToggleButtons(document.documentElement.dataset.theme ?? 'light');
 }
-
-document.addEventListener('click', (event) => {
-  if (!event.target.closest('[data-theme-toggle]')) return;
-  const theme = toggleTheme();
-  syncThemeToggleButtons(theme);
-});
 
 const router = createRouter({
   routes,
@@ -82,8 +74,7 @@ const router = createRouter({
   notFound: mountNotFound,
 });
 
-const theme = initTheme();
-syncThemeToggleButtons(theme);
+initTheme();
 initLiveChat();
 
 router.start();

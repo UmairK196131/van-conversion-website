@@ -1,7 +1,6 @@
 import { IMAGE_SIZES, renderLazyImage } from '../../lib/images.js';
 
-const ABOUT_IMAGE =
-  'https://images.unsplash.com/photo-1561361513-2d2a49cc0bcf?w=800&q=80&auto=format&fit=crop';
+const ABOUT_IMAGE = '/images/about-workshop.jpg';
 
 export function renderAboutCompany() {
   return `<section class="home-section home-section--alt" data-animate-section aria-labelledby="about-company-heading">

@@ -3,15 +3,15 @@ export const SITE = {
   tagline: 'Bespoke adventure vehicles built for the road ahead.',
   siteUrl: import.meta.env.VITE_SITE_URL || '',
   logoUrl: '/favicon.svg',
-  email: 'hello@vanconversion.com',
-  phone: '+1 (555) 123-4567',
-  address: '123 Workshop Lane, Portland, OR 97201',
+  email: 'uk196131@gmail.com',
+  phone: '+92 3415079297',
+  address: 'Street No. 62, Sector I-14/2, Islamabad, Pakistan',
   addressStructured: {
-    street: '123 Workshop Lane',
-    city: 'Portland',
-    region: 'OR',
-    postalCode: '97201',
-    country: 'US',
+    street: 'Street No. 62, Sector I-14/2',
+    city: 'Islamabad',
+    region: 'Islamabad Capital Territory',
+    postalCode: '44000',
+    country: 'PK',
   },
   hours: 'Mon–Fri 9:00 AM – 5:00 PM · Sat by appointment',
   openingHours: [
@@ -21,8 +21,9 @@ export const SITE = {
       closes: '17:00',
     },
   ],
-  mapEmbedUrl: 'https://maps.google.com/maps?q=123+Workshop+Lane,+Portland,+OR+97201&output=embed',
-  whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER || '15551234567',
+  mapEmbedUrl:
+    'https://maps.google.com/maps?q=Street+No+62,+Sector+I-14%2F2,+Islamabad,+Pakistan&output=embed',
+  whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER || '923415079297',
   whatsappMessage:
     'Hi! I found your website and I am interested in a van conversion. Can you tell me more?',
   calendlyUrl:

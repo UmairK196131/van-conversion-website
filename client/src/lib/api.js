@@ -163,12 +163,47 @@ const FALLBACK_PROJECTS = [
     slug: 'sprinter-off-grid-weekender',
     description: 'Solar-powered weekend warrior with lithium bank and outdoor shower.',
     vehicleModel: 'Mercedes Sprinter 144',
-    beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
-    afterImage: 'https://placehold.co/1200x800/1C2541/3A86FF?text=After',
-    gallery: ['https://placehold.co/800x600/1C2541/3A86FF?text=Weekender'],
+    beforeImage: '/images/portfolio/sprinter-off-grid-weekender/before.png',
+    afterImage: '/images/portfolio/sprinter-off-grid-weekender/after.png',
+    gallery: ['/images/portfolio/sprinter-off-grid-weekender/after.png'],
     isFeatured: false,
   },
 ];
+
+function isPlaceholderAsset(url) {
+  return !url || url.includes('placehold.co');
+}
+
+function withProjectAssets(project) {
+  if (!project) return project;
+
+  const fallback = FALLBACK_PROJECTS.find((item) => item.slug === project.slug);
+  if (!fallback) return project;
+
+  const gallery =
+    Array.isArray(project.gallery) &&
+    project.gallery.length &&
+    !project.gallery.every(isPlaceholderAsset)
+      ? project.gallery
+      : fallback.gallery;
+
+  return {
+    ...project,
+    beforeImage:
+      isPlaceholderAsset(project.beforeImage) && fallback.beforeImage
+        ? fallback.beforeImage
+        : project.beforeImage,
+    afterImage:
+      isPlaceholderAsset(project.afterImage) && fallback.afterImage
+        ? fallback.afterImage
+        : project.afterImage,
+    gallery,
+  };
+}
+
+function withProjectAssetsList(projects) {
+  return Array.isArray(projects) ? projects.map(withProjectAssets) : projects;
+}
 
 const FALLBACK_BLOG_POSTS = [
   {
@@ -299,9 +334,11 @@ export async function fetchServices() {
 export async function fetchFeaturedProjects() {
   try {
     const { data } = await fetchJson('/api/projects/featured');
-    return data?.length ? data : FALLBACK_PROJECTS.filter((project) => project.isFeatured);
+    return withProjectAssetsList(
+      data?.length ? data : FALLBACK_PROJECTS.filter((project) => project.isFeatured)
+    );
   } catch {
-    return FALLBACK_PROJECTS.filter((project) => project.isFeatured);
+    return withProjectAssetsList(FALLBACK_PROJECTS.filter((project) => project.isFeatured));
   }
 }
 
@@ -316,18 +353,18 @@ export async function fetchProjects(vehicle) {
   try {
     const query = vehicle ? `?vehicle=${encodeURIComponent(vehicle)}` : '';
     const { data } = await fetchJson(`/api/projects${query}`);
-    return data?.length ? data : filterFallbackProjects(vehicle);
+    return withProjectAssetsList(data?.length ? data : filterFallbackProjects(vehicle));
   } catch {
-    return filterFallbackProjects(vehicle);
+    return withProjectAssetsList(filterFallbackProjects(vehicle));
   }
 }
 
 export async function fetchProject(slug) {
   try {
     const { data } = await fetchJson(`/api/projects/${encodeURIComponent(slug)}`);
-    return data ?? null;
+    return withProjectAssets(data ?? null);
   } catch {
-    return FALLBACK_PROJECTS.find((project) => project.slug === slug) ?? null;
+    return withProjectAssets(FALLBACK_PROJECTS.find((project) => project.slug === slug) ?? null);
   }
 }
 

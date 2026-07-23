@@ -129,28 +129,32 @@
     @apply bg-surface text-primary font-semibold dark:bg-secondary dark:text-text-on-dark;
   }
 
-  .site-nav__theme {
-    @apply border-border mt-2 border-t pt-2 lg:mt-0 lg:border-0 lg:pt-0 lg:pl-2;
+  .nav-cta {
+    @apply gap-2 shadow-md transition-[transform,box-shadow,background-color] duration-200 hover:-translate-y-px hover:shadow-lg;
   }
 
-  .theme-toggle {
-    @apply text-primary inline-flex h-11 w-11 items-center justify-center rounded-lg border border-border bg-surface transition-colors hover:border-accent hover:text-accent dark:border-border-dark dark:bg-secondary dark:text-text-on-dark dark:hover:border-accent dark:hover:text-accent;
+  .nav-cta__icon {
+    @apply h-4 w-4 shrink-0;
   }
 
-  .theme-toggle--desktop {
-    @apply hidden lg:inline-flex;
+  .nav-cta--active {
+    @apply ring-2 ring-white/35 ring-offset-2 ring-offset-background;
   }
 
-  .theme-toggle__icon--dark {
-    @apply hidden;
+  .site-nav__cta-mobile {
+    @apply border-border mt-3 border-t pt-3 lg:hidden;
   }
 
-  .dark .theme-toggle__icon--light {
-    @apply hidden;
+  .site-nav__cta-mobile .nav-cta {
+    @apply w-full py-3;
   }
 
-  .dark .theme-toggle__icon--dark {
-    @apply block;
+  .site-header__cta {
+    @apply hidden shrink-0 lg:block;
+  }
+
+  .site-header__cta .nav-cta {
+    @apply px-4 py-2.5 text-sm;
   }
 
   .site-main {

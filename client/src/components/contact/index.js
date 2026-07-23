@@ -97,7 +97,7 @@ function renderInquiryForm(services) {
     </div>
     <div class="form-field">
       <label for="inquiry-phone">Phone</label>
-      <input type="tel" id="inquiry-phone" name="phone" autocomplete="tel" placeholder="+1 (555) 123-4567" />
+      <input type="tel" id="inquiry-phone" name="phone" autocomplete="tel" placeholder="+92 3415079297" />
     </div>
     <div class="form-field">
       <label for="inquiry-vehicle">Vehicle Model</label>

@@ -134,16 +134,20 @@ async function main() {
 
   await prisma.project.upsert({
     where: { slug: 'sprinter-off-grid-weekender' },
-    update: {},
+    update: {
+      beforeImage: '/images/portfolio/sprinter-off-grid-weekender/before.png',
+      afterImage: '/images/portfolio/sprinter-off-grid-weekender/after.png',
+      gallery: ['/images/portfolio/sprinter-off-grid-weekender/after.png'],
+    },
     create: {
       title: 'Sprinter Off-Grid Weekender',
       slug: 'sprinter-off-grid-weekender',
       description: 'Solar-powered weekend warrior with lithium bank and outdoor shower.',
       vehicleModel: 'Mercedes Sprinter 144',
-      beforeImage: 'https://placehold.co/1200x800/2A2F3D/8899AA?text=Before',
-      afterImage: 'https://placehold.co/1200x800/1C2541/3A86FF?text=After',
+      beforeImage: '/images/portfolio/sprinter-off-grid-weekender/before.png',
+      afterImage: '/images/portfolio/sprinter-off-grid-weekender/after.png',
       isFeatured: false,
-      gallery: ['https://placehold.co/800x600/1C2541/3A86FF?text=Weekender'],
+      gallery: ['/images/portfolio/sprinter-off-grid-weekender/after.png'],
     },
   });
 

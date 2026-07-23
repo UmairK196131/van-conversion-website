@@ -2,8 +2,7 @@ import { SITE } from '../../config/site.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
 import { IMAGE_SIZES, renderLazyImage } from '../../lib/images.js';
 
-const HERO_IMAGE =
-  'https://images.unsplash.com/photo-1561361513-2d2a49cc0bcf?w=1200&q=80&auto=format&fit=crop';
+const HERO_IMAGE = '/images/about-workshop.jpg';
 
 const STATS = [
   { value: '10+', label: 'Years Experience' },
