@@ -4,7 +4,7 @@ const FALLBACK_SERVICES = [
     title: 'Full Van Conversion',
     slug: 'full-van-conversion',
     description:
-      'Complete interior and exterior transformation tailored to your adventure lifestyle.',
+      'Complete interior and exterior transformation tailored to your adventure lifestyle — from insulation and cabinetry to electrical, plumbing, and finishing touches.',
     imageUrl: null,
     sortOrder: 1,
   },
@@ -12,7 +12,8 @@ const FALLBACK_SERVICES = [
     id: 2,
     title: 'Interior Fit-Out',
     slug: 'interior-fit-out',
-    description: 'Custom cabinetry, sleeping, kitchen, and storage solutions.',
+    description:
+      'Custom cabinetry, sleeping, kitchen, and storage solutions designed around your layout.',
     imageUrl: null,
     sortOrder: 2,
   },
@@ -20,9 +21,102 @@ const FALLBACK_SERVICES = [
     id: 3,
     title: 'Electrical & Solar',
     slug: 'electrical-solar',
-    description: 'Off-grid power systems, lithium batteries, and solar panel installation.',
+    description:
+      'Off-grid power systems, lithium batteries, and solar panel installation for true independence.',
     imageUrl: null,
     sortOrder: 3,
+  },
+  {
+    id: 4,
+    title: 'Pop-Top Roof Installation',
+    slug: 'pop-top-roof',
+    description:
+      'Standing room and extra sleeping space with professionally installed pop-top roofs.',
+    imageUrl: null,
+    sortOrder: 4,
+  },
+  {
+    id: 5,
+    title: 'Insulation & Ventilation',
+    slug: 'insulation-ventilation',
+    description: 'Thermal and acoustic insulation plus roof vents and fans for year-round comfort.',
+    imageUrl: null,
+    sortOrder: 5,
+  },
+  {
+    id: 6,
+    title: 'Custom Upholstery',
+    slug: 'custom-upholstery',
+    description: 'Premium cushions, curtains, and soft furnishings in fabrics built for van life.',
+    imageUrl: null,
+    sortOrder: 6,
+  },
+];
+
+const FALLBACK_FAQ = [
+  {
+    id: 1,
+    question: 'Do you work with vans I already own?',
+    answer:
+      'Yes — we convert customer-owned vehicles as well as sourcing base vans on request. We will assess your van during the initial consultation to confirm it is a suitable platform.',
+    category: 'General',
+    sortOrder: 1,
+  },
+  {
+    id: 2,
+    question: 'What areas do you serve?',
+    answer:
+      'We are based in Portland, Oregon and serve clients across the Pacific Northwest. We also accept projects from out-of-state clients who can deliver their vehicle to our workshop.',
+    category: 'General',
+    sortOrder: 2,
+  },
+  {
+    id: 3,
+    question: 'How much does a full van conversion cost?',
+    answer:
+      'Full conversions typically range from $65,000 to $150,000+ depending on the base vehicle, layout complexity, and systems. We provide itemised quotes after the design phase.',
+    category: 'Pricing',
+    sortOrder: 1,
+  },
+  {
+    id: 4,
+    question: 'Do you offer payment plans?',
+    answer:
+      'We require a deposit to begin design and milestone payments throughout the build. Third-party financing options are available — ask us for recommended partners.',
+    category: 'Pricing',
+    sortOrder: 2,
+  },
+  {
+    id: 5,
+    question: 'How long does a full conversion take?',
+    answer:
+      'Most full conversions take 8–16 weeks depending on complexity and custom features. We provide a detailed timeline during the design phase.',
+    category: 'Timeline',
+    sortOrder: 1,
+  },
+  {
+    id: 6,
+    question: 'Can I visit the workshop during my build?',
+    answer:
+      'Absolutely. We encourage visits at key milestones and send weekly photo updates if you cannot visit in person.',
+    category: 'Timeline',
+    sortOrder: 2,
+  },
+  {
+    id: 7,
+    question: 'Can I choose my own materials and appliances?',
+    answer:
+      'Yes — we work with you to select finishes, fabrics, and appliances that match your style and budget. We will advise on what works best in a mobile environment.',
+    category: 'Customization',
+    sortOrder: 1,
+  },
+  {
+    id: 8,
+    question: 'Do you install 4x4 or lift kits?',
+    answer:
+      'We partner with trusted specialists for suspension lifts and 4x4 conversions. We can coordinate these as part of your overall project.',
+    category: 'Customization',
+    sortOrder: 2,
   },
 ];
 
@@ -94,5 +188,14 @@ export async function fetchTestimonials() {
     return data?.length ? data : FALLBACK_TESTIMONIALS;
   } catch {
     return FALLBACK_TESTIMONIALS;
+  }
+}
+
+export async function fetchFaq() {
+  try {
+    const { data } = await fetchJson('/api/faq');
+    return data?.length ? data : FALLBACK_FAQ;
+  } catch {
+    return FALLBACK_FAQ;
   }
 }

@@ -17,6 +17,7 @@ function mountPage(path, route) {
       currentPath: path,
       mainContent,
       pageTitle: route.title,
+      pageDescription: route.description,
     });
 
     bindLayout();
@@ -43,6 +44,7 @@ function mountNotFound(path) {
       </div>
     </section>`,
     pageTitle: `Page Not Found | ${SITE.name}`,
+    pageDescription: 'The page you are looking for could not be found.',
   });
 
   bindLayout();

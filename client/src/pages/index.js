@@ -1,5 +1,9 @@
 import { SITE } from '../config/site.js';
 import { renderHomePage, mountHomePage } from '../components/home/index.js';
+import { renderAboutPage, mountAboutPage } from '../components/about/index.js';
+import { renderServicesPage, mountServicesPage } from '../components/services/index.js';
+import { renderProcessPage, mountProcessPage } from '../components/process/index.js';
+import { renderFaqPage, mountFaqPage } from '../components/faq/index.js';
 
 function pageShell({ title, description, children = '' }) {
   return `<section class="page-placeholder">
@@ -12,36 +16,38 @@ function pageShell({ title, description, children = '' }) {
   </section>`;
 }
 
+const DEFAULT_DESCRIPTION = SITE.tagline;
+
 export const pages = {
   home: {
     path: '/',
     title: `${SITE.name} | Premium Adventure Vehicles`,
+    description:
+      'Premium van conversion and camper customization — bespoke adventure vehicles built for the road ahead.',
     render: () => renderHomePage(),
     mount: (router) => mountHomePage(router),
   },
   about: {
     path: '/about',
     title: `About Us | ${SITE.name}`,
-    render: () =>
-      pageShell({
-        title: 'About Us',
-        description:
-          'Learn about our team, mission, and the craft behind every conversion. Full content arrives in Sprint 3.',
-      }),
+    description:
+      'Meet the team behind our van conversions. Learn about our mission, values, and the craft behind every adventure vehicle we build.',
+    render: () => renderAboutPage(),
+    mount: () => mountAboutPage(),
   },
   services: {
     path: '/services',
     title: `Services | ${SITE.name}`,
-    render: () =>
-      pageShell({
-        title: 'Our Services',
-        description:
-          'From full builds to electrical and interior upgrades — service listings arrive in Sprint 3.',
-      }),
+    description:
+      'Explore our van conversion services — full builds, interior fit-outs, electrical & solar, and more. Custom quotes for every project.',
+    render: () => renderServicesPage(),
+    mount: () => mountServicesPage(),
   },
   portfolio: {
     path: '/portfolio',
     title: `Portfolio | ${SITE.name}`,
+    description:
+      'Browse completed van conversions and before/after showcases. Gallery arrives in Sprint 4.',
     render: () =>
       pageShell({
         title: 'Portfolio',
@@ -52,16 +58,16 @@ export const pages = {
   process: {
     path: '/process',
     title: `Our Process | ${SITE.name}`,
-    render: () =>
-      pageShell({
-        title: 'Our Process',
-        description:
-          'Consultation, design, build, and delivery — the step-by-step timeline arrives in Sprint 3.',
-      }),
+    description:
+      'From consultation to delivery — understand our step-by-step van conversion process and what to expect at every stage.',
+    render: () => renderProcessPage(),
+    mount: () => mountProcessPage(),
   },
   testimonials: {
     path: '/testimonials',
     title: `Testimonials | ${SITE.name}`,
+    description:
+      'Hear from adventurers who trusted us with their builds. Full testimonials arrive in Sprint 4.',
     render: () =>
       pageShell({
         title: 'Testimonials',
@@ -72,6 +78,8 @@ export const pages = {
   blog: {
     path: '/blog',
     title: `Blog | ${SITE.name}`,
+    description:
+      'Van life tips, build updates, and travel inspiration. Blog posts arrive in Sprint 5.',
     render: () =>
       pageShell({
         title: 'Blog',
@@ -82,16 +90,16 @@ export const pages = {
   faq: {
     path: '/faq',
     title: `FAQ | ${SITE.name}`,
-    render: () =>
-      pageShell({
-        title: 'Frequently Asked Questions',
-        description:
-          'Answers about pricing, timelines, and customization. FAQ accordion arrives in Sprint 3.',
-      }),
+    description:
+      'Answers to common questions about van conversion pricing, timelines, customization options, and our build process.',
+    render: () => renderFaqPage(),
+    mount: () => mountFaqPage(),
   },
   contact: {
     path: '/contact',
     title: `Contact | ${SITE.name}`,
+    description:
+      'Ready to start your van conversion? Get in touch for a free consultation and custom quote.',
     render: () =>
       pageShell({
         title: 'Contact Us',
@@ -106,3 +114,6 @@ export const pages = {
 };
 
 export const routes = Object.values(pages);
+
+// Re-export for pages that need a fallback description
+export { DEFAULT_DESCRIPTION };

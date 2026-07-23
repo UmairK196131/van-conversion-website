@@ -3,7 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function initHomeAnimations() {
+export function initPageAnimations() {
   const sections = document.querySelectorAll('[data-animate-section]');
 
   sections.forEach((section) => {
@@ -50,6 +50,12 @@ export function initHomeAnimations() {
   }
 }
 
-export function destroyHomeAnimations() {
+export function destroyPageAnimations() {
   ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
 }
+
+/** @deprecated Use initPageAnimations */
+export const initHomeAnimations = initPageAnimations;
+
+/** @deprecated Use destroyPageAnimations */
+export const destroyHomeAnimations = destroyPageAnimations;

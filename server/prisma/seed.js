@@ -49,6 +49,39 @@ async function main() {
         sortOrder: 3,
       },
     }),
+    prisma.service.upsert({
+      where: { slug: 'pop-top-roof' },
+      update: {},
+      create: {
+        title: 'Pop-Top Roof Installation',
+        slug: 'pop-top-roof',
+        description:
+          'Standing room and extra sleeping space with professionally installed pop-top roofs.',
+        sortOrder: 4,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'insulation-ventilation' },
+      update: {},
+      create: {
+        title: 'Insulation & Ventilation',
+        slug: 'insulation-ventilation',
+        description:
+          'Thermal and acoustic insulation plus roof vents and fans for year-round comfort.',
+        sortOrder: 5,
+      },
+    }),
+    prisma.service.upsert({
+      where: { slug: 'custom-upholstery' },
+      update: {},
+      create: {
+        title: 'Custom Upholstery',
+        slug: 'custom-upholstery',
+        description:
+          'Premium cushions, curtains, and soft furnishings in fabrics built for van life.',
+        sortOrder: 6,
+      },
+    }),
   ]);
 
   await prisma.project.upsert({
@@ -111,24 +144,67 @@ async function main() {
     },
   });
 
+  await prisma.faqItem.deleteMany({});
+
   await prisma.faqItem.createMany({
     data: [
+      {
+        question: 'Do you work with vans I already own?',
+        answer:
+          'Yes — we convert customer-owned vehicles as well as sourcing base vans on request. We will assess your van during the initial consultation.',
+        category: 'General',
+        sortOrder: 1,
+      },
+      {
+        question: 'What areas do you serve?',
+        answer:
+          'We are based in Portland, Oregon and serve clients across the Pacific Northwest. Out-of-state clients can deliver their vehicle to our workshop.',
+        category: 'General',
+        sortOrder: 2,
+      },
+      {
+        question: 'How much does a full van conversion cost?',
+        answer:
+          'Full conversions typically range from $65,000 to $150,000+ depending on the base vehicle, layout complexity, and systems.',
+        category: 'Pricing',
+        sortOrder: 1,
+      },
+      {
+        question: 'Do you offer payment plans?',
+        answer:
+          'We require a deposit to begin design and milestone payments throughout the build. Third-party financing options are available.',
+        category: 'Pricing',
+        sortOrder: 2,
+      },
       {
         question: 'How long does a full conversion take?',
         answer:
           'Most full conversions take 8–16 weeks depending on complexity and custom features.',
-        category: 'Process',
+        category: 'Timeline',
         sortOrder: 1,
       },
       {
-        question: 'Do you work with vans I already own?',
+        question: 'Can I visit the workshop during my build?',
         answer:
-          'Yes — we convert customer-owned vehicles as well as sourcing base vans on request.',
-        category: 'General',
+          'Absolutely. We encourage visits at key milestones and send weekly photo updates if you cannot visit in person.',
+        category: 'Timeline',
+        sortOrder: 2,
+      },
+      {
+        question: 'Can I choose my own materials and appliances?',
+        answer:
+          'Yes — we work with you to select finishes, fabrics, and appliances that match your style and budget.',
+        category: 'Customization',
+        sortOrder: 1,
+      },
+      {
+        question: 'Do you install 4x4 or lift kits?',
+        answer:
+          'We partner with trusted specialists for suspension lifts and 4x4 conversions as part of your overall project.',
+        category: 'Customization',
         sortOrder: 2,
       },
     ],
-    skipDuplicates: true,
   });
 
   console.log(
