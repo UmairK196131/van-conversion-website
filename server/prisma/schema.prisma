@@ -19,12 +19,13 @@ enum InquiryStatus {
 }
 
 model User {
-  id           Int        @id @default(autoincrement())
-  email        String     @unique
-  passwordHash String     @map("password_hash")
-  role         UserRole   @default(ADMIN)
-  createdAt    DateTime   @default(now()) @map("created_at")
+  id           Int           @id @default(autoincrement())
+  email        String        @unique
+  passwordHash String        @map("password_hash")
+  role         UserRole      @default(ADMIN)
+  createdAt    DateTime      @default(now()) @map("created_at")
   blogPosts    BlogPost[]
+  activityLogs ActivityLog[]
 
   @@map("users")
 }
@@ -123,4 +124,17 @@ model Media {
   uploadedAt DateTime @default(now()) @map("uploaded_at")
 
   @@map("media")
+}
+
+model ActivityLog {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @map("user_id")
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  action    String
+  entity    String
+  entityId  Int?     @map("entity_id")
+  details   Json?
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@map("activity_logs")
 }

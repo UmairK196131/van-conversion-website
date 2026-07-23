@@ -9,10 +9,13 @@ export default [
     ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**'],
   },
   {
-    files: ['**/*.js'],
+    files: ['**/*.{js,jsx}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
+      parserOptions: {
+        ecmaFeatures: { jsx: true },
+      },
       globals: {
         ...globals.browser,
         ...globals.node,

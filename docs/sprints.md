@@ -250,17 +250,17 @@ Sprint 0 (API + DB), Sprint 1
 
 ### Tasks
 
-- [ ] Admin login page with JWT authentication
-- [ ] Protected route middleware (redirect to login if unauthenticated)
-- [ ] **Dashboard Home** — Summary cards (total inquiries, recent posts, active services)
-- [ ] **Services Manager** — CRUD with image upload
-- [ ] **Projects Manager** — CRUD with gallery upload and before/after images
-- [ ] **Blog Manager** — CRUD with rich text editor (TipTap or similar)
-- [ ] **Testimonials Manager** — CRUD with rating and image
-- [ ] **Inquiries Viewer** — Table with status filters (new, responded, archived), detail view
-- [ ] **FAQ Manager** — CRUD with category and sort order
-- [ ] Image upload integration (Cloudinary or S3)
-- [ ] Admin activity logging
+- [x] Admin login page with JWT authentication
+- [x] Protected route middleware (redirect to login if unauthenticated)
+- [x] **Dashboard Home** — Summary cards (total inquiries, recent posts, active services)
+- [x] **Services Manager** — CRUD with image upload
+- [x] **Projects Manager** — CRUD with gallery upload and before/after images
+- [x] **Blog Manager** — CRUD with rich text editor (TipTap or similar)
+- [x] **Testimonials Manager** — CRUD with rating and image
+- [x] **Inquiries Viewer** — Table with status filters (new, responded, archived), detail view
+- [x] **FAQ Manager** — CRUD with category and sort order
+- [x] Image upload integration (Cloudinary or S3)
+- [x] Admin activity logging
 
 ### Acceptance Criteria
 
