@@ -77,18 +77,19 @@ The Vite dev server proxies `/api` requests to the Express server.
 
 ## Scripts
 
-| Command              | Description                        |
-| -------------------- | ---------------------------------- |
-| `npm run dev`        | Start client + server concurrently |
-| `npm run dev:client` | Vite dev server only               |
-| `npm run dev:server` | Express API only                   |
-| `npm run build`      | Production build (client)          |
-| `npm run lint`       | ESLint across the monorepo         |
-| `npm run format`     | Prettier write                     |
-| `npm run typecheck`  | TypeScript check (server)          |
-| `npm run db:migrate` | Run Prisma migrations              |
-| `npm run db:seed`    | Seed sample data                   |
-| `npm run db:studio`  | Open Prisma Studio                 |
+| Command              | Description                                 |
+| -------------------- | ------------------------------------------- |
+| `npm run dev`        | Start client + server concurrently          |
+| `npm run dev:client` | Vite dev server only                        |
+| `npm run dev:server` | Express API only                            |
+| `npm run build`      | Production build (client)                   |
+| `npm run lint`       | ESLint across the monorepo                  |
+| `npm run format`     | Prettier write                              |
+| `npm run ci`         | Run all CI checks locally (run before push) |
+| `npm run typecheck`  | TypeScript check (server)                   |
+| `npm run db:migrate` | Run Prisma migrations                       |
+| `npm run db:seed`    | Seed sample data                            |
+| `npm run db:studio`  | Open Prisma Studio                          |
 
 ## Design Tokens
 
@@ -114,6 +115,8 @@ Tokens are defined in [`client/src/styles/main.css`](./client/src/styles/main.cs
 | `develop` | Integration branch for active development |
 
 Feature branches merge into `develop` via pull request. CI runs lint, format check, type check, and client build on every PR.
+
+Before pushing, run `npm run ci` locally (or rely on the pre-push hook) to avoid failed checks on GitHub.
 
 ## Database Schema
 

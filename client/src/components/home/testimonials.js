@@ -19,9 +19,7 @@ function renderSlide(testimonial, index) {
 }
 
 export function renderTestimonials(testimonials) {
-  const slides = testimonials
-    .map((testimonial, index) => renderSlide(testimonial, index))
-    .join('');
+  const slides = testimonials.map((testimonial, index) => renderSlide(testimonial, index)).join('');
 
   const dots = testimonials
     .map(

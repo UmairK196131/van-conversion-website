@@ -2,12 +2,14 @@ const DIFFERENTIATORS = [
   {
     icon: '✦',
     title: 'Bespoke Design',
-    description: 'Every layout is custom-designed around your travel style, budget, and base vehicle.',
+    description:
+      'Every layout is custom-designed around your travel style, budget, and base vehicle.',
   },
   {
     icon: '⚙',
     title: 'Expert Craftsmanship',
-    description: 'Skilled builders with years of van conversion experience and meticulous attention to detail.',
+    description:
+      'Skilled builders with years of van conversion experience and meticulous attention to detail.',
   },
   {
     icon: '☀',
@@ -22,7 +24,8 @@ const DIFFERENTIATORS = [
   {
     icon: '🤝',
     title: 'Transparent Process',
-    description: 'Regular updates, clear timelines, and no surprises from consultation to handover.',
+    description:
+      'Regular updates, clear timelines, and no surprises from consultation to handover.',
   },
   {
     icon: '🏆',
