@@ -263,4 +263,335 @@
     transform: translateY(0);
     pointer-events: auto;
   }
+
+  /* ── Homepage ── */
+
+  .home-page {
+    @apply overflow-x-hidden;
+  }
+
+  .container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .home-section {
+    @apply py-section;
+  }
+
+  .home-section--alt {
+    @apply bg-surface dark:bg-secondary/40;
+  }
+
+  .section-header {
+    @apply mx-auto mb-12 max-w-2xl text-center;
+  }
+
+  .section-eyebrow {
+    @apply text-accent mb-3 text-sm font-semibold tracking-widest uppercase;
+  }
+
+  .section-title {
+    @apply mb-4 text-3xl font-bold sm:text-4xl;
+  }
+
+  .section-description {
+    @apply text-text-muted text-base leading-relaxed sm:text-lg dark:text-text-muted-on-dark;
+  }
+
+  .section-description--left {
+    @apply mx-0 mb-4 max-w-none text-left;
+  }
+
+  .section-footer {
+    @apply mt-10 text-center;
+  }
+
+  .btn--lg {
+    @apply px-7 py-3.5 text-base;
+  }
+
+  .btn--on-dark {
+    @apply border-white/30 text-white hover:bg-white/10 dark:border-white/30 dark:text-white dark:hover:bg-white/10;
+  }
+
+  /* Hero */
+  .hero {
+    @apply relative flex min-h-[85vh] items-center overflow-hidden;
+  }
+
+  .hero__media {
+    @apply absolute inset-0;
+  }
+
+  .hero__video,
+  .hero__image {
+    @apply h-full w-full object-cover;
+  }
+
+  .hero__video--hidden {
+    @apply hidden;
+  }
+
+  .hero__image {
+    @apply hidden;
+  }
+
+  .hero__video--hidden + .hero__image {
+    @apply block;
+  }
+
+  .hero__overlay {
+    @apply absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/40 dark:from-primary/95 dark:via-primary/80 dark:to-primary/50;
+  }
+
+  .hero__content {
+    @apply relative z-10 w-full py-16;
+  }
+
+  .hero__eyebrow {
+    @apply text-accent-on-dark mb-4 text-sm font-semibold tracking-widest uppercase;
+  }
+
+  .hero__title {
+    @apply mb-5 max-w-3xl text-4xl leading-tight font-bold text-white sm:text-5xl lg:text-6xl;
+  }
+
+  .hero__subtitle {
+    @apply mb-8 max-w-xl text-lg leading-relaxed text-white/85 sm:text-xl;
+  }
+
+  .hero__actions {
+    @apply flex flex-col gap-3 sm:flex-row;
+  }
+
+  /* Services */
+  .service-grid {
+    @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .service-card {
+    @apply border-border bg-surface flex flex-col overflow-hidden rounded-2xl border shadow-sm transition-shadow hover:shadow-md dark:border-border-dark dark:bg-secondary;
+  }
+
+  .service-card__image {
+    @apply aspect-[4/3] w-full object-cover;
+  }
+
+  .service-card__placeholder {
+    @apply flex aspect-[4/3] items-center justify-center text-4xl;
+    background: linear-gradient(135deg, hsl(var(--hue, 220) 30% 20%), hsl(var(--hue, 220) 50% 35%));
+  }
+
+  .service-card__body {
+    @apply flex flex-1 flex-col p-6;
+  }
+
+  .service-card__title {
+    @apply mb-2 text-lg font-semibold;
+  }
+
+  .service-card__description {
+    @apply text-text-muted mb-4 flex-1 text-sm leading-relaxed dark:text-text-muted-on-dark;
+  }
+
+  .service-card__link {
+    @apply text-accent text-sm font-semibold no-underline hover:underline;
+  }
+
+  /* Split layout */
+  .split-layout {
+    @apply grid items-center gap-10 lg:grid-cols-2 lg:gap-16;
+  }
+
+  .split-layout__image {
+    @apply aspect-[4/3] w-full rounded-2xl object-cover shadow-lg;
+  }
+
+  /* Features */
+  .feature-grid {
+    @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .feature-card {
+    @apply border-border bg-surface rounded-2xl border p-6 shadow-sm dark:border-border-dark dark:bg-secondary;
+  }
+
+  .feature-card__icon {
+    @apply text-accent mb-4 block text-2xl;
+  }
+
+  .feature-card__title {
+    @apply mb-2 text-lg font-semibold;
+  }
+
+  .feature-card__description {
+    @apply text-text-muted text-sm leading-relaxed dark:text-text-muted-on-dark;
+  }
+
+  /* Portfolio */
+  .portfolio-grid {
+    @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .portfolio-card__link {
+    @apply border-border bg-surface block overflow-hidden rounded-2xl border no-underline shadow-sm transition-shadow hover:shadow-lg dark:border-border-dark dark:bg-secondary;
+  }
+
+  .portfolio-card__media {
+    @apply relative overflow-hidden;
+  }
+
+  .portfolio-card__image {
+    @apply aspect-[4/3] w-full object-cover transition-transform duration-500;
+  }
+
+  .portfolio-card__link:hover .portfolio-card__image {
+    transform: scale(1.05);
+  }
+
+  .portfolio-card__overlay {
+    @apply absolute inset-0 flex items-center justify-center bg-primary/0 transition-colors duration-300;
+  }
+
+  .portfolio-card__link:hover .portfolio-card__overlay {
+    @apply bg-primary/50;
+  }
+
+  .portfolio-card__cta {
+    @apply translate-y-4 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-primary opacity-0 transition-all duration-300;
+  }
+
+  .portfolio-card__link:hover .portfolio-card__cta {
+    @apply translate-y-0 opacity-100;
+  }
+
+  .portfolio-card__body {
+    @apply p-5;
+  }
+
+  .portfolio-card__vehicle {
+    @apply text-accent mb-1 text-xs font-semibold tracking-wide uppercase;
+  }
+
+  .portfolio-card__title {
+    @apply mb-2 text-lg font-semibold;
+  }
+
+  .portfolio-card__description {
+    @apply text-text-muted line-clamp-2 text-sm dark:text-text-muted-on-dark;
+  }
+
+  /* Testimonials */
+  .testimonials {
+    @apply mx-auto max-w-3xl;
+  }
+
+  .testimonial-card {
+    @apply text-center;
+  }
+
+  .testimonial-card__rating {
+    @apply mb-4 flex justify-center gap-1;
+  }
+
+  .testimonial-card__star {
+    @apply text-border text-xl dark:text-border-dark;
+  }
+
+  .testimonial-card__star--filled {
+    @apply text-accent;
+  }
+
+  .testimonial-card__quote {
+    @apply mb-6 text-xl leading-relaxed font-medium italic sm:text-2xl;
+  }
+
+  .testimonial-card__name {
+    @apply text-text-muted text-sm font-semibold not-italic dark:text-text-muted-on-dark;
+  }
+
+  .testimonials__controls {
+    @apply mt-8 flex items-center justify-center gap-4;
+  }
+
+  .testimonials__nav {
+    @apply border-border text-primary inline-flex h-10 w-10 items-center justify-center rounded-full border bg-transparent transition-colors hover:border-accent hover:text-accent dark:border-border-dark dark:text-text-on-dark;
+  }
+
+  .testimonials__dots {
+    @apply flex gap-2;
+  }
+
+  .testimonials__dot {
+    @apply bg-border h-2 w-2 rounded-full border-0 p-0 transition-colors dark:bg-border-dark;
+  }
+
+  .testimonials__dot--active {
+    @apply bg-accent w-6;
+  }
+
+  /* CTA Banner */
+  .cta-banner {
+    @apply relative overflow-hidden py-20;
+  }
+
+  .cta-banner__bg {
+    @apply bg-accent absolute inset-0;
+    background-image: linear-gradient(135deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  }
+
+  .cta-banner__content {
+    @apply relative z-10 text-center;
+  }
+
+  .cta-banner__title {
+    @apply mb-4 text-3xl font-bold text-white sm:text-4xl;
+  }
+
+  .cta-banner__text {
+    @apply mx-auto mb-8 max-w-xl text-lg text-white/90;
+  }
+
+  /* Contact snippet */
+  .contact-snippet {
+    @apply grid gap-10 lg:grid-cols-2 lg:gap-16;
+  }
+
+  .contact-snippet__details {
+    @apply text-text-muted mt-6 space-y-3 text-sm dark:text-text-muted-on-dark;
+  }
+
+  .contact-snippet__details > li {
+    @apply list-none;
+  }
+
+  .contact-snippet__details strong {
+    @apply text-primary mb-0.5 block dark:text-text-on-dark;
+  }
+
+  .contact-snippet__form {
+    @apply border-border bg-surface space-y-4 rounded-2xl border p-6 shadow-sm sm:p-8 dark:border-border-dark dark:bg-secondary;
+  }
+
+  .contact-snippet__form--error .form-field input:invalid,
+  .contact-snippet__form--error .form-field textarea:invalid {
+    @apply border-red-500;
+  }
+
+  .contact-snippet__note {
+    @apply text-text-muted text-xs dark:text-text-muted-on-dark;
+  }
+
+  .form-field label {
+    @apply mb-1.5 block text-sm font-medium;
+  }
+
+  .form-field input,
+  .form-field textarea {
+    @apply border-border bg-background text-text w-full rounded-lg border px-4 py-2.5 text-sm transition-colors focus:border-accent focus:outline-none dark:border-border-dark dark:bg-background;
+  }
+
+  .form-field textarea {
+    @apply resize-y;
+  }
 }

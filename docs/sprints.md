@@ -105,16 +105,16 @@ Sprint 0
 
 ### Tasks
 
-- [ ] **Hero Banner** — Full-width hero with headline, subtext, CTA buttons, background video/image support
-- [ ] **Featured Services** — Card grid pulling from `/api/services` (or static seed data)
-- [ ] **About Company** — Brief intro with image and "Learn More" link to `/about`
-- [ ] **Why Choose Us** — Icon/feature grid (4–6 differentiators)
-- [ ] **Portfolio Preview** — Featured project cards with hover effects, link to `/portfolio`
-- [ ] **Testimonials** — Carousel or card slider with client quotes and ratings
-- [ ] **CTA Banner** — Full-width call-to-action ("Start Your Build" → `/contact`)
-- [ ] **Contact Snippet** — Mini contact form or quick-contact info
-- [ ] **Footer** — Finalize with all links and social media
-- [ ] Add GSAP scroll-triggered entrance animations for each section
+- [x] **Hero Banner** — Full-width hero with headline, subtext, CTA buttons, background video/image support
+- [x] **Featured Services** — Card grid pulling from `/api/services` (or static seed data)
+- [x] **About Company** — Brief intro with image and "Learn More" link to `/about`
+- [x] **Why Choose Us** — Icon/feature grid (4–6 differentiators)
+- [x] **Portfolio Preview** — Featured project cards with hover effects, link to `/portfolio`
+- [x] **Testimonials** — Carousel or card slider with client quotes and ratings
+- [x] **CTA Banner** — Full-width call-to-action ("Start Your Build" → `/contact`)
+- [x] **Contact Snippet** — Mini contact form or quick-contact info
+- [x] **Footer** — Finalize with all links and social media
+- [x] Add GSAP scroll-triggered entrance animations for each section
 
 ### Acceptance Criteria
 

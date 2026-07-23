@@ -23,6 +23,8 @@ export const FOOTER_LINKS = [
   { label: 'Services', path: '/services' },
   { label: 'Portfolio', path: '/portfolio' },
   { label: 'Our Process', path: '/process' },
+  { label: 'Testimonials', path: '/testimonials' },
+  { label: 'Blog', path: '/blog' },
   { label: 'FAQ', path: '/faq' },
   { label: 'Contact', path: '/contact' },
 ];

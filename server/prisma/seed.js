@@ -74,6 +74,28 @@ async function main() {
     },
   });
 
+  await prisma.testimonial.upsert({
+    where: { id: 2 },
+    update: {},
+    create: {
+      clientName: 'James Rivera',
+      quote:
+        'From design to delivery, the craftsmanship was outstanding. We are living our dream on the road.',
+      rating: 5,
+    },
+  });
+
+  await prisma.testimonial.upsert({
+    where: { id: 3 },
+    update: {},
+    create: {
+      clientName: 'Emma & Tom Walsh',
+      quote:
+        'They listened to every detail and built exactly what we envisioned. Could not recommend more highly.',
+      rating: 5,
+    },
+  });
+
   await prisma.blogPost.upsert({
     where: { slug: 'choosing-the-right-base-van' },
     update: {},

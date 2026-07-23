@@ -1,4 +1,5 @@
 import { SITE } from '../config/site.js';
+import { renderHomePage, mountHomePage } from '../components/home/index.js';
 
 function pageShell({ title, description, children = '' }) {
   return `<section class="page-placeholder">
@@ -15,16 +16,8 @@ export const pages = {
   home: {
     path: '/',
     title: `${SITE.name} | Premium Adventure Vehicles`,
-    render: () =>
-      pageShell({
-        title: 'Premium Van Conversions',
-        description:
-          'Custom camper vans and adventure vehicles crafted for life on the road. Full homepage sections arrive in Sprint 2.',
-        children: `<div class="page-placeholder__actions">
-          <a href="/services" data-nav-link class="btn btn--primary">Explore Services</a>
-          <a href="/contact" data-nav-link class="btn btn--secondary">Get a Quote</a>
-        </div>`,
-      }),
+    render: () => renderHomePage(),
+    mount: (router) => mountHomePage(router),
   },
   about: {
     path: '/about',

@@ -10,15 +10,21 @@ const app = document.getElementById('app');
 function mountPage(path, route) {
   if (!app || !route) return;
 
-  app.innerHTML = renderLayout({
-    currentPath: path,
-    mainContent: route.render(),
-    pageTitle: route.title,
-  });
+  const mainContentPromise = Promise.resolve(route.render());
 
-  bindLayout();
-  syncThemeToggleButtons(document.documentElement.dataset.theme ?? 'light');
-  document.getElementById('main-content')?.focus({ preventScroll: true });
+  mainContentPromise.then((mainContent) => {
+    app.innerHTML = renderLayout({
+      currentPath: path,
+      mainContent,
+      pageTitle: route.title,
+    });
+
+    bindLayout();
+    syncThemeToggleButtons(document.documentElement.dataset.theme ?? 'light');
+    document.getElementById('main-content')?.focus({ preventScroll: true });
+
+    if (route.mount) route.mount(router);
+  });
 }
 
 function mountNotFound(path) {
