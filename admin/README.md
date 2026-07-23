@@ -14,6 +14,8 @@ npm run dev:admin
 
 Admin runs at **http://localhost:5174** and proxies API requests to the server on port 3001.
 
+**Client handoff guide:** [docs/admin-guide.md](../docs/admin-guide.md)
+
 ## Default credentials
 
 - Email: `admin@vanconversion.local`

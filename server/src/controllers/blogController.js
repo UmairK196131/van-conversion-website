@@ -7,6 +7,7 @@ const BLOG_LIST_SELECT = {
   excerpt: true,
   coverImage: true,
   publishedAt: true,
+  updatedAt: true,
   author: {
     select: {
       email: true,

@@ -328,20 +328,20 @@ Sprint 2 (homepage), Sprint 5 (contact), Sprint 6 (admin for content)
 
 ### Tasks
 
-- [ ] Generate `sitemap.xml` for all public routes
-- [ ] Create `robots.txt` with crawl directives
-- [ ] Add JSON-LD structured data (Organization, LocalBusiness, BlogPosting)
-- [ ] Optimize all images (WebP, compression, responsive `srcset`)
-- [ ] Enable lazy loading for below-fold images and embeds
+- [x] Generate `sitemap.xml` for all public routes
+- [x] Create `robots.txt` with crawl directives
+- [x] Add JSON-LD structured data (Organization, LocalBusiness, BlogPosting)
+- [x] Optimize all images (WebP, compression, responsive `srcset`)
+- [x] Enable lazy loading for below-fold images and embeds
 - [ ] Run Lighthouse audits — target 90+ on Performance, SEO, Accessibility, Best Practices
-- [ ] Security audit: verify HTTPS, helmet headers, CSRF, rate limits, input sanitization
+- [x] Security audit: verify HTTPS, helmet headers, CSRF, rate limits, input sanitization
 - [ ] Set up production environment (Vercel/Netlify + Hostinger/AWS)
-- [ ] Configure environment variables for production
-- [ ] Set up database backups
+- [x] Configure environment variables for production
+- [x] Set up database backups
 - [ ] Deploy frontend and backend to production
 - [ ] Smoke test all pages, forms, and admin CRUD in production
-- [ ] Write `README.md` with setup, deployment, and environment variable docs
-- [ ] Handoff documentation for client/admin user guide
+- [x] Write `README.md` with setup, deployment, and environment variable docs
+- [x] Handoff documentation for client/admin user guide
 
 ### Acceptance Criteria
 

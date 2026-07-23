@@ -1,4 +1,5 @@
 import { SITE } from '../../config/site.js';
+import { IMAGE_SIZES, renderLazyImage } from '../../lib/images.js';
 
 const HERO_POSTER =
   'https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=1920&q=80&auto=format&fit=crop';
@@ -33,7 +34,17 @@ export function renderHero() {
           <path d="M8 5v14l11-7L8 5z"/>
         </svg>
       </button>
-      <img class="hero__image" src="${HERO_POSTER}" alt="" loading="eager" fetchpriority="high" />
+      ${renderLazyImage({
+        src: HERO_POSTER,
+        alt: '',
+        className: 'hero__image',
+        width: 1920,
+        height: 1080,
+        loading: 'eager',
+        fetchpriority: 'high',
+        sizes: IMAGE_SIZES.hero,
+        widths: [640, 960, 1280, 1920],
+      })}
     </div>
     <div class="hero__overlay" aria-hidden="true"></div>
     <div class="hero__content">

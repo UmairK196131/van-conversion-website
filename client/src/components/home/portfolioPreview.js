@@ -1,4 +1,4 @@
-import { projectCoverImage, renderLazyImage } from '../../lib/images.js';
+import { projectCoverImage, renderLazyImage, IMAGE_SIZES } from '../../lib/images.js';
 
 export function renderPortfolioPreview(projects) {
   const cards = projects
@@ -12,6 +12,7 @@ export function renderPortfolioPreview(projects) {
               className: 'portfolio-card__image',
               width: 800,
               height: 600,
+              sizes: IMAGE_SIZES.card,
             })}
             <div class="portfolio-card__overlay">
               <span class="portfolio-card__cta">View Project</span>

@@ -1,6 +1,7 @@
 import { SITE } from '../../config/site.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
-import { renderLazyImage } from '../../lib/images.js';
+import { renderLazyImage, IMAGE_SIZES } from '../../lib/images.js';
+import { buildBlogPostingSchema } from '../../lib/seo.js';
 import { fetchBlogPost } from '../../lib/api.js';
 
 function formatDate(dateString) {
@@ -35,27 +36,6 @@ function renderRelatedPosts(posts) {
     <h2 class="blog-related__heading">Related Articles</h2>
     <div class="blog-related__list">${cards}</div>
   </aside>`;
-}
-
-function renderArticleJsonLd(post, coverImage) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.excerpt,
-    image: coverImage,
-    datePublished: post.publishedAt,
-    author: {
-      '@type': 'Person',
-      name: post.authorName || 'Van Conversion Team',
-    },
-    publisher: {
-      '@type': 'Organization',
-      name: SITE.name,
-    },
-  };
-
-  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
 export async function renderBlogDetailPage(slug) {
@@ -103,6 +83,8 @@ export async function renderBlogDetailPage(slug) {
           className: 'blog-detail__cover-image',
           width: 1200,
           height: 675,
+          sizes: IMAGE_SIZES.content,
+          widths: [640, 960, 1200, 1600],
         })}
       </div>
       <div class="container blog-detail__layout">
@@ -111,13 +93,13 @@ export async function renderBlogDetailPage(slug) {
         </div>
         ${renderRelatedPosts(post.relatedPosts)}
       </div>
-      ${renderArticleJsonLd(post, coverImage)}
     </article>`,
     meta: {
       title: `${post.title} | Blog | ${SITE.name}`,
       description: post.excerpt || post.title,
       image: coverImage,
     },
+    structuredData: [buildBlogPostingSchema(post, coverImage)],
   };
 }
 

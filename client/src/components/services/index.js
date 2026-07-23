@@ -1,5 +1,6 @@
 import { fetchServices } from '../../lib/api.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
+import { IMAGE_SIZES, renderLazyImage } from '../../lib/images.js';
 
 const SERVICE_ICONS = ['🚐', '🛠️', '⚡', '🏕️', '🔧', '🌿'];
 
@@ -18,7 +19,14 @@ function getPriceRange(service) {
 
 function serviceImage(service, index) {
   if (service.imageUrl) {
-    return `<img src="${service.imageUrl}" alt="" class="service-detail-card__image" loading="lazy" />`;
+    return renderLazyImage({
+      src: service.imageUrl,
+      alt: '',
+      className: 'service-detail-card__image',
+      width: 800,
+      height: 500,
+      sizes: IMAGE_SIZES.card,
+    });
   }
 
   const hue = 220 + index * 15;

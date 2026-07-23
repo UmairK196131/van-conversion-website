@@ -1,5 +1,6 @@
 import { SITE } from '../../config/site.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
+import { IMAGE_SIZES, renderLazyImage } from '../../lib/images.js';
 
 const HERO_IMAGE =
   'https://images.unsplash.com/photo-1561361513-2d2a49cc0bcf?w=1200&q=80&auto=format&fit=crop';
@@ -95,7 +96,17 @@ const MILESTONES = [
 function renderPageHero() {
   return `<section class="page-hero" data-hero data-animate-section>
     <div class="page-hero__media" aria-hidden="true">
-      <img src="${HERO_IMAGE}" alt="" class="page-hero__image" />
+      ${renderLazyImage({
+        src: HERO_IMAGE,
+        alt: '',
+        className: 'page-hero__image',
+        width: 1200,
+        height: 800,
+        loading: 'eager',
+        fetchpriority: 'high',
+        sizes: IMAGE_SIZES.hero,
+        widths: [640, 960, 1200, 1920],
+      })}
       <div class="page-hero__overlay"></div>
     </div>
     <div class="container page-hero__content">
@@ -178,7 +189,14 @@ function renderValues() {
 function renderTeam() {
   const members = TEAM.map(
     (member) => `<article class="team-card" data-animate-item>
-      <img src="${member.image}" alt="${member.name}" class="team-card__image" loading="lazy" width="400" height="400" />
+      ${renderLazyImage({
+        src: member.image,
+        alt: member.name,
+        className: 'team-card__image',
+        width: 400,
+        height: 400,
+        sizes: IMAGE_SIZES.card,
+      })}
       <div class="team-card__body">
         <h3 class="team-card__name">${member.name}</h3>
         <p class="team-card__role">${member.role}</p>

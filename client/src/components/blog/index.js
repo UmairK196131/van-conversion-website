@@ -1,5 +1,5 @@
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
-import { renderLazyImage } from '../../lib/images.js';
+import { renderLazyImage, IMAGE_SIZES } from '../../lib/images.js';
 import { fetchBlogPosts } from '../../lib/api.js';
 
 function formatDate(dateString) {
@@ -28,6 +28,7 @@ function renderPostCard(post) {
           className: 'blog-card__image',
           width: 800,
           height: 450,
+          sizes: IMAGE_SIZES.card,
         })}
       </div>
       <div class="blog-card__body">

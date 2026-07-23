@@ -9,7 +9,7 @@ export default [
     ignores: ['**/dist/**', '**/node_modules/**', '**/coverage/**'],
   },
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx,mjs}'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',

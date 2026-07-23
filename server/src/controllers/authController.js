@@ -3,11 +3,13 @@ import jwt from 'jsonwebtoken';
 import { prisma } from '../lib/prisma.js';
 import { config } from '../config/env.js';
 import { logActivity } from '../lib/activityLog.js';
+import { LIMITS, sanitizeEmail } from '../lib/sanitize.js';
 
 export async function login(req, res, next) {
   try {
-    const email = req.body.email?.trim();
-    const password = req.body.password;
+    const email = sanitizeEmail(req.body.email);
+    const password =
+      typeof req.body.password === 'string' ? req.body.password.slice(0, LIMITS.password) : '';
 
     if (!email || !password) {
       res.status(400).json({ error: 'Email and password are required' });

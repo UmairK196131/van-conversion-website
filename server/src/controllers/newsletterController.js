@@ -1,39 +1,27 @@
 import { prisma } from '../lib/prisma.js';
 import { config } from '../config/env.js';
 import { subscribeToExternalProvider } from '../lib/newsletterProviders.js';
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function trim(value) {
-  return typeof value === 'string' ? value.trim() : '';
-}
+import { validateNewsletterEmail } from '../lib/sanitize.js';
 
 export async function subscribeNewsletter(req, res, next) {
   try {
-    const email = trim(req.body.email).toLowerCase();
-    const source = trim(req.body.source) || 'newsletter';
+    const { errors, data } = validateNewsletterEmail(req.body);
 
-    if (!email) {
-      res.status(400).json({ error: 'Validation failed', errors: { email: 'Email is required' } });
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ error: 'Validation failed', errors });
       return;
     }
 
-    if (!EMAIL_PATTERN.test(email)) {
-      res.status(400).json({
-        error: 'Validation failed',
-        errors: { email: 'Please enter a valid email address' },
-      });
-      return;
-    }
-
-    const existing = await prisma.newsletterSubscriber.findUnique({ where: { email } });
+    const existing = await prisma.newsletterSubscriber.findUnique({ where: { email: data.email } });
 
     if (!existing) {
-      await prisma.newsletterSubscriber.create({ data: { email, source } });
+      await prisma.newsletterSubscriber.create({
+        data: { email: data.email, source: data.source },
+      });
     }
 
     try {
-      await subscribeToExternalProvider(email);
+      await subscribeToExternalProvider(data.email);
     } catch (providerError) {
       console.error('[newsletter] External provider error:', providerError);
       if (config.isProduction && !existing) {
@@ -59,29 +47,23 @@ export async function subscribeNewsletter(req, res, next) {
 
 export async function requestBrochure(req, res, next) {
   try {
-    const email = trim(req.body.email).toLowerCase();
+    const { errors, data } = validateNewsletterEmail({ ...req.body, source: 'brochure' });
 
-    if (!email) {
-      res.status(400).json({ error: 'Validation failed', errors: { email: 'Email is required' } });
+    if (Object.keys(errors).length > 0) {
+      res.status(400).json({ error: 'Validation failed', errors });
       return;
     }
 
-    if (!EMAIL_PATTERN.test(email)) {
-      res.status(400).json({
-        error: 'Validation failed',
-        errors: { email: 'Please enter a valid email address' },
-      });
-      return;
-    }
-
-    const existing = await prisma.newsletterSubscriber.findUnique({ where: { email } });
+    const existing = await prisma.newsletterSubscriber.findUnique({ where: { email: data.email } });
 
     if (!existing) {
-      await prisma.newsletterSubscriber.create({ data: { email, source: 'brochure' } });
+      await prisma.newsletterSubscriber.create({
+        data: { email: data.email, source: 'brochure' },
+      });
     }
 
     try {
-      await subscribeToExternalProvider(email);
+      await subscribeToExternalProvider(data.email);
     } catch (providerError) {
       console.error('[brochure] External provider error:', providerError);
     }

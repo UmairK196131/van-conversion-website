@@ -1,10 +1,26 @@
 export const SITE = {
   name: 'Van Conversion & Camper',
   tagline: 'Bespoke adventure vehicles built for the road ahead.',
+  siteUrl: import.meta.env.VITE_SITE_URL || '',
+  logoUrl: '/favicon.svg',
   email: 'hello@vanconversion.com',
   phone: '+1 (555) 123-4567',
   address: '123 Workshop Lane, Portland, OR 97201',
+  addressStructured: {
+    street: '123 Workshop Lane',
+    city: 'Portland',
+    region: 'OR',
+    postalCode: '97201',
+    country: 'US',
+  },
   hours: 'Mon–Fri 9:00 AM – 5:00 PM · Sat by appointment',
+  openingHours: [
+    {
+      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+      opens: '09:00',
+      closes: '17:00',
+    },
+  ],
   mapEmbedUrl: 'https://maps.google.com/maps?q=123+Workshop+Lane,+Portland,+OR+97201&output=embed',
   whatsappNumber: import.meta.env.VITE_WHATSAPP_NUMBER || '15551234567',
   whatsappMessage:

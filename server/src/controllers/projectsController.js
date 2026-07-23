@@ -11,6 +11,7 @@ const PROJECT_LIST_SELECT = {
   gallery: true,
   isFeatured: true,
   createdAt: true,
+  updatedAt: true,
 };
 
 const VEHICLE_FILTERS = {

@@ -1,6 +1,6 @@
 import { fetchProjects } from '../../lib/api.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
-import { projectCoverImage, renderLazyImage } from '../../lib/images.js';
+import { projectCoverImage, renderLazyImage, IMAGE_SIZES } from '../../lib/images.js';
 
 export const PORTFOLIO_FILTERS = [
   { id: 'all', label: 'All' },
@@ -49,6 +49,7 @@ function renderProjectCard(project) {
           className: 'portfolio-card__image',
           width: 800,
           height: 600,
+          sizes: IMAGE_SIZES.card,
         })}
         <div class="portfolio-card__overlay">
           <span class="portfolio-card__cta">View Project</span>

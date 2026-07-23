@@ -1,7 +1,8 @@
 import { fetchProject } from '../../lib/api.js';
 import { SITE } from '../../config/site.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
-import { projectCoverImage, renderLazyImage } from '../../lib/images.js';
+import { projectCoverImage, renderLazyImage, IMAGE_SIZES } from '../../lib/images.js';
+import { buildCreativeWorkSchema } from '../../lib/seo.js';
 import { bindBeforeAfterSliders, renderBeforeAfterSlider } from '../beforeAfterSlider.js';
 
 function renderSpecs(project) {
@@ -44,6 +45,7 @@ function renderGallery(project) {
           className: 'project-gallery__image',
           width: 400,
           height: 300,
+          sizes: IMAGE_SIZES.gallery,
         })}
       </button>`
         )
@@ -54,22 +56,6 @@ function renderGallery(project) {
       <img src="" alt="" class="project-lightbox__image" data-gallery-lightbox-image />
     </dialog>
   </section>`;
-}
-
-function renderProjectJsonLd(project, coverImage) {
-  const data = {
-    '@context': 'https://schema.org',
-    '@type': 'CreativeWork',
-    name: project.title,
-    description: project.description,
-    image: coverImage,
-    creator: {
-      '@type': 'Organization',
-      name: SITE.name,
-    },
-  };
-
-  return `<script type="application/ld+json">${JSON.stringify(data)}</script>`;
 }
 
 export async function renderProjectDetailPage(slug) {
@@ -131,13 +117,13 @@ export async function renderProjectDetailPage(slug) {
           </aside>
         </div>
       </div>
-      ${renderProjectJsonLd(project, coverImage)}
     </div>`,
     meta: {
       title: `${project.title} | Portfolio | ${SITE.name}`,
       description: project.description,
       image: coverImage,
     },
+    structuredData: [buildCreativeWorkSchema(project, coverImage)],
   };
 }
 

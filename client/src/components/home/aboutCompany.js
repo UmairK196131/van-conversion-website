@@ -1,3 +1,5 @@
+import { IMAGE_SIZES, renderLazyImage } from '../../lib/images.js';
+
 const ABOUT_IMAGE =
   'https://images.unsplash.com/photo-1561361513-2d2a49cc0bcf?w=800&q=80&auto=format&fit=crop';
 
@@ -6,14 +8,15 @@ export function renderAboutCompany() {
     <div class="container">
       <div class="split-layout">
         <div class="split-layout__media" data-animate-item>
-          <img
-            src="${ABOUT_IMAGE}"
-            alt="Craftsperson working on a van conversion interior"
-            class="split-layout__image"
-            loading="lazy"
-            width="800"
-            height="600"
-          />
+          ${renderLazyImage({
+            src: ABOUT_IMAGE,
+            alt: 'Craftsperson working on a van conversion interior',
+            className: 'split-layout__image',
+            width: 800,
+            height: 600,
+            sizes: IMAGE_SIZES.split,
+            widths: [400, 800, 1200],
+          })}
         </div>
         <div class="split-layout__content" data-animate-item>
           <p class="section-eyebrow">About Us</p>

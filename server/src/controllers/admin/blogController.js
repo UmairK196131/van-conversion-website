@@ -1,6 +1,7 @@
 import { prisma } from '../../lib/prisma.js';
 import { logActivity } from '../../lib/activityLog.js';
 import { slugify } from '../../utils/slugify.js';
+import { LIMITS, sanitizePlainText, sanitizeRichHtml, sanitizeUrl } from '../../lib/sanitize.js';
 
 export async function listBlogPosts(_req, res, next) {
   try {
@@ -39,8 +40,12 @@ export async function getBlogPost(req, res, next) {
 export async function createBlogPost(req, res, next) {
   try {
     const { title, content, excerpt, coverImage, isPublished } = req.body;
+    const cleanTitle = sanitizePlainText(title, { maxLength: LIMITS.title });
+    const cleanContent = sanitizeRichHtml(content);
+    const cleanExcerpt = excerpt ? sanitizePlainText(excerpt, { maxLength: LIMITS.excerpt }) : null;
+    const cleanCoverImage = coverImage ? sanitizeUrl(coverImage) : null;
 
-    if (!title?.trim() || !content?.trim()) {
+    if (!cleanTitle || !cleanContent) {
       res.status(400).json({ error: 'Title and content are required' });
       return;
     }
@@ -49,11 +54,11 @@ export async function createBlogPost(req, res, next) {
 
     const post = await prisma.blogPost.create({
       data: {
-        title: title.trim(),
-        slug: slugify(title),
-        content: content.trim(),
-        excerpt: excerpt?.trim() || null,
-        coverImage: coverImage || null,
+        title: cleanTitle,
+        slug: slugify(cleanTitle),
+        content: cleanContent,
+        excerpt: cleanExcerpt,
+        coverImage: cleanCoverImage,
         isPublished: published,
         publishedAt: published ? new Date() : null,
         authorId: req.user.id,
@@ -85,12 +90,14 @@ export async function updateBlogPost(req, res, next) {
 
     const data = {};
     if (title !== undefined) {
-      data.title = title.trim();
-      data.slug = slugify(title);
+      data.title = sanitizePlainText(title, { maxLength: LIMITS.title });
+      data.slug = slugify(data.title);
     }
-    if (content !== undefined) data.content = content.trim();
-    if (excerpt !== undefined) data.excerpt = excerpt?.trim() || null;
-    if (coverImage !== undefined) data.coverImage = coverImage || null;
+    if (content !== undefined) data.content = sanitizeRichHtml(content);
+    if (excerpt !== undefined) {
+      data.excerpt = excerpt ? sanitizePlainText(excerpt, { maxLength: LIMITS.excerpt }) : null;
+    }
+    if (coverImage !== undefined) data.coverImage = coverImage ? sanitizeUrl(coverImage) : null;
     if (isPublished !== undefined) {
       data.isPublished = Boolean(isPublished);
       if (isPublished && !existing.publishedAt) {

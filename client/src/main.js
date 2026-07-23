@@ -16,6 +16,7 @@ function mountPage(path, route, params = {}) {
     let pageTitle = route.title;
     let pageDescription = route.description;
     let pageImage;
+    let structuredData = [];
 
     if (result && typeof result === 'object' && 'html' in result) {
       mainContent = result.html;
@@ -23,6 +24,9 @@ function mountPage(path, route, params = {}) {
         pageTitle = result.meta.title ?? pageTitle;
         pageDescription = result.meta.description ?? pageDescription;
         pageImage = result.meta.image;
+      }
+      if (result.structuredData) {
+        structuredData = result.structuredData;
       }
     }
 
@@ -32,6 +36,7 @@ function mountPage(path, route, params = {}) {
       pageTitle,
       pageDescription,
       pageImage,
+      structuredData,
     });
 
     bindLayout();

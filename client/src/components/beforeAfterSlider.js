@@ -1,4 +1,4 @@
-import { renderLazyImage } from '../lib/images.js';
+import { renderLazyImage, IMAGE_SIZES } from '../lib/images.js';
 
 export function renderBeforeAfterSlider({
   beforeImage,
@@ -15,6 +15,8 @@ export function renderBeforeAfterSlider({
         className: 'before-after__image before-after__image--after',
         width: 1200,
         height: 800,
+        sizes: IMAGE_SIZES.full,
+        widths: [640, 960, 1200, 1600],
       })}
       <div class="before-after__before" data-before-after-before style="width: 50%;">
         ${renderLazyImage({
@@ -23,6 +25,8 @@ export function renderBeforeAfterSlider({
           className: 'before-after__image before-after__image--before',
           width: 1200,
           height: 800,
+          sizes: IMAGE_SIZES.full,
+          widths: [640, 960, 1200, 1600],
         })}
       </div>
       <div class="before-after__divider" data-before-after-divider style="left: 50%;" aria-hidden="true">

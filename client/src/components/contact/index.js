@@ -2,6 +2,7 @@ import { SITE } from '../../config/site.js';
 import { fetchServices, submitInquiry } from '../../lib/api.js';
 import { getRecaptchaToken } from '../../lib/recaptcha.js';
 import { initPageAnimations, destroyPageAnimations } from '../../lib/animations.js';
+import { mountDeferredEmbeds, renderDeferredIframe } from '../../lib/embeds.js';
 
 const BUDGET_OPTIONS = [
   { value: '', label: 'Select a budget range' },
@@ -38,12 +39,12 @@ function renderCalendlyEmbed() {
         <p class="section-description">Pick a time that works for you — we will walk through your ideas and answer your questions.</p>
       </div>
       <div class="calendly-embed" data-animate-item>
-        <iframe
-          src="${SITE.calendlyUrl}?hide_gdpr_banner=1"
-          title="Book a consultation with ${SITE.name}"
-          class="calendly-embed__iframe"
-          loading="lazy"
-        ></iframe>
+        ${renderDeferredIframe({
+          src: `${SITE.calendlyUrl}?hide_gdpr_banner=1`,
+          title: `Book a consultation with ${SITE.name}`,
+          className: 'calendly-embed__iframe',
+          height: 700,
+        })}
       </div>
     </div>
   </section>`;
@@ -70,17 +71,13 @@ function renderContactInfo() {
       </li>
     </ul>
     <div class="contact-map">
-      <iframe
-        title="Workshop location on Google Maps"
-        src="${SITE.mapEmbedUrl}"
-        width="100%"
-        height="280"
-        style="border:0;"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        class="contact-map__iframe"
-      ></iframe>
+      ${renderDeferredIframe({
+        src: SITE.mapEmbedUrl,
+        title: 'Workshop location on Google Maps',
+        className: 'contact-map__iframe',
+        height: 280,
+        allow: 'fullscreen',
+      })}
     </div>
   </div>`;
 }
@@ -261,4 +258,5 @@ export function mountContactPage() {
   });
 
   requestAnimationFrame(() => initPageAnimations());
+  mountDeferredEmbeds();
 }

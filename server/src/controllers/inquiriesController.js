@@ -1,38 +1,11 @@
 import { prisma } from '../lib/prisma.js';
 import { verifyRecaptcha } from '../lib/recaptcha.js';
 import { sendInquiryNotification } from '../lib/mail.js';
-
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function trim(value) {
-  return typeof value === 'string' ? value.trim() : '';
-}
-
-function validateInquiry(body) {
-  const errors = {};
-  const name = trim(body.name);
-  const email = trim(body.email);
-  const phone = trim(body.phone);
-  const vehicleModel = trim(body.vehicleModel);
-  const service = trim(body.service);
-  const budget = trim(body.budget);
-  const message = trim(body.message);
-
-  if (!name) errors.name = 'Name is required';
-  if (!email) errors.email = 'Email is required';
-  else if (!EMAIL_PATTERN.test(email)) errors.email = 'Please enter a valid email address';
-  if (!service) errors.service = 'Required service is required';
-  if (!message) errors.message = 'Message is required';
-
-  return {
-    errors,
-    data: { name, email, phone, vehicleModel, service, budget, message },
-  };
-}
+import { validateInquiryInput } from '../lib/sanitize.js';
 
 export async function createInquiry(req, res, next) {
   try {
-    const { errors, data } = validateInquiry(req.body);
+    const { errors, data } = validateInquiryInput(req.body);
 
     if (Object.keys(errors).length > 0) {
       res.status(400).json({ error: 'Validation failed', errors });
